@@ -129,7 +129,54 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
 .method h3{font-size:15px;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
 .method ul{margin:0;padding-left:18px;display:grid;gap:3px}
 .method a{color:var(--ink)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* fun: angel vs devil barometer (joke block, can be switched off) */
+.fun{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:8px 22px;align-items:center;overflow:hidden}
+.fun[hidden],.funoff[hidden]{display:none!important}
+@media (max-width:900px){.fun{grid-template-columns:1fr}}
+.fun[data-mood="doom"]{border-color:var(--safeR);box-shadow:inset 0 0 0 1px var(--safeR),inset 0 0 60px rgba(255,90,40,.18)}
+.fun[data-mood="heaven"]{border-color:var(--safeD);box-shadow:inset 0 0 0 1px var(--safeD),inset 0 0 60px rgba(120,160,255,.18)}
+.fun svg{width:100%;height:auto;display:block;color:var(--muted)}
+.fun .say{display:grid;gap:8px;min-width:0}
+.funbar{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.fun .mood{font-family:var(--f-display);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1;text-transform:uppercase}
+.fun[data-mood="doom"] .mood,.fun[data-mood="red"] .mood{color:var(--safeR)}
+.fun[data-mood="heaven"] .mood,.fun[data-mood="blue"] .mood{color:var(--safeD)}
+.fun[data-mood="tug"] .mood{color:var(--toss)}
+.fun[data-mood="doom"] .mood{animation:alarm 1.6s ease-in-out infinite}
+@keyframes alarm{0%,100%{transform:none}8%{transform:translateX(-3px) rotate(-1deg)}16%{transform:translateX(3px) rotate(1deg)}24%{transform:none}}
+.fun .quip{font-size:15px}
+.fun .wk{font-size:13px;color:var(--muted);display:grid;gap:3px}
+.fun .wk b{color:var(--ink);font-weight:600}
+.funtoggle{font:inherit;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:3px;padding:3px 9px;cursor:pointer;white-space:nowrap}
+.funoff{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:center}
+.svgsm{font-family:var(--f-mono);font-size:11px;fill:currentColor}
+.svgb{font-family:var(--f-body);font-size:14px;font-weight:600}
+.who{cursor:pointer;outline:none}
+.who:focus-visible .lean{outline:2px solid var(--accent)}
+.who.poke{animation:hop .45s ease 2}
+@keyframes hop{40%{transform:translateY(-14px)}}
+.lean{transform-box:fill-box;transform-origin:50% 100%;transition:transform .9s cubic-bezier(.3,1.4,.5,1)}
+#knot{transition:transform .9s cubic-bezier(.3,1.4,.5,1)}
+.ang-wing{transform-box:fill-box;transform-origin:95% 35%;animation:flap 1.6s ease-in-out infinite}
+@keyframes flap{50%{transform:rotate(-12deg)}}
+.halo{transform-box:fill-box;transform-origin:50% 50%;animation:halo 2.4s ease-in-out infinite}
+@keyframes halo{50%{opacity:.55;transform:translateY(-2px)}}
+.dev-tail{transform-box:fill-box;transform-origin:0% 100%;animation:wag 1.1s ease-in-out infinite}
+@keyframes wag{50%{transform:rotate(14deg)}}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .45s ease-in-out infinite alternate}
+.flame:nth-child(2n){animation-duration:.65s}
+@keyframes flick{to{transform:scaleY(1.28) scaleX(.88)}}
+.spark{animation:twinkle 1.8s ease-in-out infinite}
+.spark:nth-child(2n){animation-delay:.7s}
+@keyframes twinkle{50%{opacity:.1}}
+#fx-flames,#fx-sparks,#bgHell,#bgHeaven{transition:opacity .6s}
+.bubble{transition:opacity .25s}
+.ticon{pointer-events:none}
+.race .wk{font-size:12px}
+.wkup{color:var(--safeD)} .wkdn{color:var(--safeR)}
+.card .quip{font-size:13.5px;font-style:italic;color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.ang-wing,.halo,.dev-tail,.flame,.spark,.who.poke,.fun .mood{animation:none!important}}
 </style>
 </head>
 <body>
@@ -163,6 +210,96 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       <div class="foot" id="footGov">…</div>
     </div>
   </section>
+
+  <section class="fun" id="fun" data-mood="tug" aria-label="Шуточный барометр: ангел против дьявола">
+    <svg viewBox="0 0 640 232" role="img" aria-label="Ангел и дьявол перетягивают канат с флагом США. Чем выше шансы синих, тем ближе флаг к ангелу.">
+      <defs>
+        <radialGradient id="gHeaven" cx="18%" cy="45%" r="55%"><stop offset="0" stop-color="#9ab6ea" stop-opacity=".55"/><stop offset="1" stop-color="#9ab6ea" stop-opacity="0"/></radialGradient>
+        <radialGradient id="gHell" cx="82%" cy="85%" r="55%"><stop offset="0" stop-color="#ff6a3d" stop-opacity=".6"/><stop offset="1" stop-color="#ff6a3d" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect id="bgHeaven" width="640" height="232" fill="url(#gHeaven)"/>
+      <rect id="bgHell" width="640" height="232" fill="url(#gHell)"/>
+      <g fill="#e9effb"><ellipse cx="112" cy="207" rx="62" ry="11"/><ellipse cx="82" cy="200" rx="26" ry="12"/><ellipse cx="136" cy="198" rx="30" ry="14"/></g>
+      <path d="M430 232 Q462 206 520 207 Q586 199 640 205 L640 232 Z" fill="#5a1a1f"/>
+      <line x1="325" y1="34" x2="325" y2="212" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="4 5"/>
+      <text x="325" y="227" text-anchor="middle" class="svgsm">50 на 50</text>
+      <g id="fx-sparks" fill="#f5c542">
+        <path class="spark" d="M40 52 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z"/>
+        <path class="spark" d="M196 44 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/>
+        <path class="spark" d="M222 100 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z"/>
+        <path class="spark" d="M26 128 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z"/>
+        <path class="spark" d="M70 26 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z"/>
+      </g>
+      <g id="fx-flames">
+        <path class="flame" d="M466 210 C458 192 472 184 470 168 C482 180 488 194 480 210 Z" fill="#ff7a2f"/>
+        <path class="flame" d="M486 210 C476 188 492 178 489 156 C506 174 512 194 500 210 Z" fill="#ffb02e"/>
+        <path class="flame" d="M584 210 C574 190 588 180 586 162 C601 178 606 196 596 210 Z" fill="#ff7a2f"/>
+        <path class="flame" d="M608 210 C600 194 611 186 610 172 C622 186 625 198 618 210 Z" fill="#ffb02e"/>
+        <path class="flame" d="M626 210 C620 198 628 192 628 182 C637 192 639 202 634 210 Z" fill="#ff7a2f"/>
+      </g>
+      <path d="M158 140 Q325 152 492 140" fill="none" stroke="#b58b4c" stroke-width="5" stroke-linecap="round"/>
+      <path d="M158 140 Q325 152 492 140" fill="none" stroke="#7d5a2b" stroke-width="5" stroke-dasharray="3 6"/>
+      <g id="knot"><g transform="translate(325 146)">
+        <circle r="4" fill="#7d5a2b"/>
+        <g transform="translate(-17 4)">
+          <rect width="34" height="21" fill="#ffffff" stroke="#c9ced8" stroke-width=".6"/>
+          <rect width="34" height="3" fill="#c43a42"/><rect y="6" width="34" height="3" fill="#c43a42"/><rect y="12" width="34" height="3" fill="#c43a42"/><rect y="18" width="34" height="3" fill="#c43a42"/>
+          <rect width="14" height="12" fill="#1d4aa0"/>
+        </g>
+      </g></g>
+      <g transform="translate(120 0)"><g class="who" id="angel" tabindex="0" role="button" aria-label="Ангел, нажми">
+        <g class="lean" id="angelLean">
+          <g class="ang-wing"><path d="M-6 116 C-28 90 -68 84 -78 108 C-71 111 -69 117 -71 124 C-63 124 -60 131 -61 138 C-53 136 -47 142 -45 149 C-34 145 -20 141 -8 132 Z" fill="#f4f7ff" stroke="#b9c9ee" stroke-width="1.5"/><path d="M-22 110 C-38 108 -54 112 -66 120 M-20 121 C-32 122 -44 128 -52 136" fill="none" stroke="#c9d6f2" stroke-width="1.4" stroke-linecap="round"/></g>
+          <path d="M-24 202 L-15 124 Q0 112 15 124 L24 202 Z" fill="#e4ecff" stroke="#9db4e6" stroke-width="1.5"/>
+          <path d="M-14 152 L14 152" stroke="#4a77c8" stroke-width="4" stroke-linecap="round"/>
+          <path d="M8 128 L38 140" stroke="#e4ecff" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="38" cy="140" r="5" fill="#f7d9b5"/>
+          <circle cx="0" cy="96" r="18" fill="#f7d9b5"/>
+          <path d="M-18 93 C-20 72 20 70 18 91 C12 81 -10 80 -18 93 Z" fill="#f2c94c"/>
+          <path d="M-9 97 q3 -4 6 0 M4 97 q3 -4 6 0" stroke="#3b2f2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="-10" cy="104" r="3" fill="#f4a6a6" opacity=".75"/><circle cx="11" cy="104" r="3" fill="#f4a6a6" opacity=".75"/>
+          <path d="M-5 105 q5 5 10 0" stroke="#3b2f2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse class="halo" cx="0" cy="66" rx="15" ry="4.5" fill="none" stroke="#f5c542" stroke-width="3.5"/>
+        </g>
+      </g></g>
+      <g transform="translate(530 0)"><g class="who" id="devil" tabindex="0" role="button" aria-label="Дьявол, нажми">
+        <g class="lean" id="devilLean">
+          <g stroke="#3a1013" stroke-width="3" stroke-linecap="round" fill="none"><path d="M30 206 L52 98"/><path d="M41 102 Q52 88 63 102"/><path d="M52 98 L54 84"/></g>
+          <g class="dev-tail"><path d="M14 188 C48 188 50 152 64 140" fill="none" stroke="#a9232c" stroke-width="5" stroke-linecap="round"/><path d="M64 140 l-5 -12 13 3 z" fill="#a9232c"/></g>
+          <path d="M-22 202 L-16 128 Q0 116 16 128 L22 202 Z" fill="#c43a42" stroke="#8e1f27" stroke-width="1.5"/>
+          <path d="M-8 132 L-38 140" stroke="#c43a42" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="-38" cy="140" r="5" fill="#d94a50"/>
+          <path d="M-13 84 Q-25 66 -12 57 Q-13 70 -5 79 Z" fill="#2b0c0f"/>
+          <path d="M13 84 Q25 66 12 57 Q13 70 5 79 Z" fill="#2b0c0f"/>
+          <circle cx="0" cy="98" r="19" fill="#d94a50"/>
+          <path d="M-12 89 L-3 93 M12 89 L3 93" stroke="#2b0c0f" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="-7" cy="97" r="3.3" fill="#ffe066"/><circle cx="7" cy="97" r="3.3" fill="#ffe066"/>
+          <circle cx="-7.6" cy="97.6" r="1.5" fill="#2b0c0f"/><circle cx="6.4" cy="97.6" r="1.5" fill="#2b0c0f"/>
+          <path d="M-9 105 Q0 114 9 105 Z" fill="#2b0c0f"/>
+          <path d="M-5 106 l2 4 2 -4 z" fill="#ffffff"/>
+          <path d="M-4 116 L0 127 L4 116 Z" fill="#2b0c0f"/>
+        </g>
+      </g></g>
+      <g id="bubA" class="bubble" opacity="0" transform="translate(150 18)">
+        <path d="M14 33 L8 48 L30 33 Z" fill="#ffffff" stroke="#9db4e6"/>
+        <rect width="120" height="34" rx="10" fill="#ffffff" stroke="#9db4e6"/>
+        <text x="12" y="22" class="svgb" fill="#141a26"></text>
+      </g>
+      <g id="bubD" class="bubble" opacity="0" transform="translate(380 18)">
+        <path class="tail" d="M96 33 L114 48 L110 33 Z" fill="#2b0c0f" stroke="#c43a42"/>
+        <rect width="120" height="34" rx="10" fill="#2b0c0f" stroke="#c43a42"/>
+        <text x="12" y="22" class="svgb" fill="#ffd2c2"></text>
+      </g>
+    </svg>
+    <div class="say">
+      <div class="funbar"><span class="eyebrow">Барометр души Америки · шутка</span><button class="funtoggle" id="funToggle" type="button">Выключить шутки</button></div>
+      <div class="mood" id="funMood">Чистилище</div>
+      <div class="quip" id="funQuip"></div>
+      <div class="wk" id="funWeek"></div>
+      <div class="eyebrow">Ткни в ангела или дьявола</div>
+    </div>
+  </section>
+  <div class="funoff" id="funOff" hidden>Шуточный барометр выключен. <button class="funtoggle" id="funOn" type="button">Включить</button></div>
 
   <div class="ctx" id="ctx"></div>
 
@@ -221,7 +358,8 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   var RU = {AL:"Алабама",AK:"Аляска",AZ:"Аризона",AR:"Арканзас",CA:"Калифорния",CO:"Колорадо",CT:"Коннектикут",DE:"Делавэр",DC:"Округ Колумбия",FL:"Флорида",GA:"Джорджия",HI:"Гавайи",ID:"Айдахо",IL:"Иллинойс",IN:"Индиана",IA:"Айова",KS:"Канзас",KY:"Кентукки",LA:"Луизиана",ME:"Мэн",MD:"Мэриленд",MA:"Массачусетс",MI:"Мичиган",MN:"Миннесота",MS:"Миссисипи",MO:"Миссури",MT:"Монтана",NE:"Небраска",NV:"Невада",NH:"Нью-Гэмпшир",NJ:"Нью-Джерси",NM:"Нью-Мексико",NY:"Нью-Йорк",NC:"Северная Каролина",ND:"Северная Дакота",OH:"Огайо",OK:"Оклахома",OR:"Орегон",PA:"Пенсильвания",RI:"Род-Айленд",SC:"Южная Каролина",SD:"Южная Дакота",TN:"Теннесси",TX:"Техас",UT:"Юта",VT:"Вермонт",VA:"Вирджиния",WA:"Вашингтон",WV:"Западная Вирджиния",WI:"Висконсин",WY:"Вайоминг"};
   var SMALL = ["VT","NH","MA","RI","CT","NJ","DE","MD"];
 
-  var state = {chamber:"senate", races:{}, meta:null, selected:null, paths:{}, labels:{}};
+  var state = {chamber:"senate", races:{}, meta:null, selected:null, paths:{}, labels:{}, icons:{}, fun:true};
+  try{ state.fun = localStorage.getItem("em26-fun")!=="off"; }catch(e){}
   try{ var saved = localStorage.getItem("em26-tab"); if(saved==="governor"||saved==="senate") state.chamber = saved; }catch(e){}
 
   function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
@@ -281,13 +419,15 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   function paint(){
     for(var ab in state.paths){
       state.paths[ab].attr("fill", fillFor(ab)).classed("sel", state.selected===ab);
-      if(state.labels[ab]) state.labels[ab].attr("fill", labelColor(ab));
+      if(state.labels[ab]){ state.labels[ab].attr("fill", labelColor(ab)); trendIcon(ab); }
     }
     document.querySelectorAll("#small .chip").forEach(function(b){
       var ab=b.getAttribute("data-st"); var r=raceFor(ab);
       b.style.background = fillFor(ab);
       b.style.color = (r && RATINGS[r.rating] && RATINGS[r.rating].strong) ? "#ffffff" : (r? "#141a26" : "");
       b.style.outline = state.selected===ab ? "2px solid var(--sel)" : "";
+      var t = state.fun ? trendOf(r) : null;
+      b.textContent = (t && t.dir ? (t.dir==="red" ? "😈 " : "😇 ") : "") + ab;
     });
     var has = Object.keys(state.races).length>0;
     var paths = Object.keys(state.paths).length>0;
@@ -295,6 +435,102 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     if(paths && has) empty.hidden = true;
     else if(paths && !has && state.dataError) { empty.hidden=false; empty.textContent = "Данные о гонках не загрузились. Обновите страницу."; }
   }
+
+  /* weekly trend: redder or bluer than the last weekly snapshot */
+  function trendOf(r){
+    if(!r) return null;
+    var a = ORDER.indexOf(r.prevRating || r.rating), b = ORDER.indexOf(r.rating);
+    var d = (r.prevProb!=null && r.dProb!=null) ? Math.round((r.dProb - r.prevProb)*10)/10 : null;
+    var dir = (b>a || (d!=null && d<=-5)) ? "red" : (b<a || (d!=null && d>=5)) ? "blue" : null;
+    return {dir:dir, delta:d};
+  }
+  function fmtNum(x){ return (Math.round(x*10)/10).toString().replace(".", ","); }
+  function signed(x){ return (x>0 ? "+" : x<0 ? "−" : "±") + fmtNum(Math.abs(x)); }
+  function trendIcon(ab){
+    var t = state.fun ? trendOf(raceFor(ab)) : null, dir = t && t.dir, ic = state.icons[ab];
+    if(!dir){ if(ic) ic.attr("display","none"); return; }
+    if(!ic) ic = state.icons[ab] = gLabels.append("g").attr("class","ticon");
+    var x = +state.labels[ab].attr("x"), y = +state.labels[ab].attr("y");
+    ic.attr("display", null).html(dir==="blue"
+      ? '<ellipse cx="'+x+'" cy="'+(y-11)+'" rx="7" ry="2.4" fill="none" stroke="#f5c542" stroke-width="2.2"/>'
+      : '<path d="M'+(x-6)+' '+(y-6)+' Q'+(x-10)+' '+(y-14)+' '+(x-5)+' '+(y-17)+' Q'+(x-6)+' '+(y-11)+' '+(x-2)+' '+(y-7)+' Z M'+(x+6)+' '+(y-6)+' Q'+(x+10)+' '+(y-14)+' '+(x+5)+' '+(y-17)+' Q'+(x+6)+' '+(y-11)+' '+(x+2)+' '+(y-7)+' Z" fill="#ff5a3c" stroke="#2b0c0f" stroke-width=".7"/>');
+  }
+
+  /* fun: angel vs devil barometer */
+  var FUN = {
+    doom:{t:"Америка погибает", q:"Дьявол празднует, ангел ушёл за подкреплением.", say:["d","Ха-ха! Америка погибает!"]},
+    red:{t:"Краснеет", q:"Дьявол точит вилы и присматривается к Капитолию.", say:["d","Ещё чуть-чуть…"]},
+    tug:{t:"Чистилище", q:"Ангел и дьявол тянут Америку каждый к себе. Пока ничья.", say:null},
+    blue:{t:"Синеет", q:"Ангел полирует нимб и репетирует на арфе.", say:["a","Держимся, братья!"]},
+    heaven:{t:"Ангелы поют", q:"Америка спасена. По крайней мере до следующего опроса.", say:["a","Аллилуйя!"]}
+  };
+  var POKE = {a:["Аллилуйя!","Всё будет хорошо","Не трогай нимб","Голосуйте досрочно!"], d:["Америка погибает!","Ха-ха-ха!","Вилы наточены","Я ещё вернусь"]};
+  var QUIP = {safeD:"Ангел тут даже не напрягается.", likelyD:"Ангел спокоен, но арфу из рук не выпускает.", leanD:"Ангел впереди, но дьявол дышит в затылок.", tossup:"Ангел и дьявол разыгрывают этот штат в камень-ножницы-бумагу.", leanR:"Дьявол впереди, но ангел ещё не сдал крылья.", likelyR:"Дьявол уже присматривает тут недвижимость.", safeR:"Дьявол тут прописан с рождения."};
+
+  function funMood(){
+    var sen = (state.meta||{}).senate || {}, p = sen.demProb, prev = sen.prevDemProb;
+    var d = (p!=null && prev!=null) ? Math.round((p-prev)*10)/10 : 0, red = [], blue = [];
+    for(var k in state.races){ var r = state.races[k], t = trendOf(r); if(t && t.dir==="red") red.push([r,t]); if(t && t.dir==="blue") blue.push([r,t]); }
+    var m = (p!=null && (p<=40 || d<=-5)) ? "doom" : (d<=-2 || red.length>blue.length) ? "red"
+          : (p!=null && (p>=75 || d>=5)) ? "heaven" : (d>=2 || blue.length>red.length) ? "blue" : "tug";
+    return {key:m, p:p, d:d, red:red, blue:blue};
+  }
+  function say(who, text, ms){
+    var g = document.getElementById(who==="a" ? "bubA" : "bubD"); if(!g) return;
+    var t = g.querySelector("text"), rc = g.querySelector("rect");
+    t.textContent = text || "";
+    var w = 120; try{ w = Math.ceil(t.getComputedTextLength()) + 24; }catch(e){ w = (text||"").length*8 + 24; }
+    rc.setAttribute("width", w);
+    if(who==="d"){ g.setAttribute("transform", "translate(" + (512-w) + " 18)"); g.querySelector(".tail").setAttribute("d", "M"+(w-30)+" 33 L"+(w-10)+" 48 L"+(w-14)+" 33 Z"); }
+    g.setAttribute("opacity", text ? "1" : "0");
+    clearTimeout(g._t);
+    if(ms) g._t = setTimeout(funSpeech, ms);
+  }
+  function funSpeech(){ say("a",""); say("d",""); var F = FUN[state.funKey||"tug"]; if(F.say) say(F.say[0], F.say[1]); }
+  function renderFun(){
+    var box = document.getElementById("fun"), off = document.getElementById("funOff");
+    box.hidden = !state.fun; off.hidden = state.fun;
+    if(!state.fun) return;
+    var m = funMood(), forced = null;
+    try{ forced = new URLSearchParams(location.search).get("mood"); }catch(e){}
+    if(forced && FUN[forced]){ m.key = forced; m.preview = {doom:28, red:44, tug:50, blue:58, heaven:86}[forced]; }
+    var F = FUN[m.key]; state.funKey = m.key;
+    box.setAttribute("data-mood", m.key);
+    document.getElementById("funMood").textContent = F.t;
+    document.getElementById("funQuip").textContent = F.q;
+    var wk = document.getElementById("funWeek"); wk.textContent = "";
+    if(m.p!=null){ var l = el("div"); l.appendChild(document.createTextNode("Шанс синих взять Сенат: ")); l.appendChild(el("b",null,fmtPct(m.p))); l.appendChild(document.createTextNode(", за неделю " + signed(m.d))); wk.appendChild(l); }
+    [[m.red,"Покраснели 😈"],[m.blue,"Посинели 😇"]].forEach(function(x){
+      var l = el("div"); l.appendChild(el("b",null,x[1]+": "));
+      l.appendChild(document.createTextNode(x[0].length ? x[0].map(function(y){ var r=y[0], t=y[1]; return (r.name||RU[r.st]) + " (" + (r.chamber==="senate" ? "Сенат" : "губернатор") + (t.delta ? ", " + signed(t.delta) : "") + ")"; }).join(", ") : "никто"));
+      wk.appendChild(l);
+    });
+    if(m.preview!=null) wk.insertBefore(el("div",null,"Это превью режима, цифры ниже настоящие."), wk.firstChild);
+    var p = m.preview!=null ? m.preview : m.p!=null ? m.p : 50, lead = Math.max(-1, Math.min(1, (p-50)/50));
+    document.getElementById("knot").style.transform = "translate(" + (-130*lead) + "px,0)";
+    document.getElementById("angelLean").style.transform = "rotate(" + (-8*lead) + "deg) scale(" + (1+0.08*lead) + ")";
+    document.getElementById("devilLean").style.transform = "rotate(" + (-8*lead) + "deg) scale(" + (1-0.08*lead) + ")";
+    var hot = m.key==="doom" || m.key==="red", holy = m.key==="heaven" || m.key==="blue";
+    document.getElementById("fx-flames").style.opacity = hot ? 1 : .25;
+    document.getElementById("bgHell").style.opacity = hot ? 1 : .35;
+    document.getElementById("fx-sparks").style.opacity = holy ? 1 : .3;
+    document.getElementById("bgHeaven").style.opacity = holy ? 1 : .45;
+    document.getElementById("funToggle").textContent = "Выключить шутки";
+    funSpeech();
+  }
+  function poke(who){
+    var g = document.getElementById(who==="a" ? "angel" : "devil");
+    g.classList.remove("poke"); void g.getBoundingClientRect(); g.classList.add("poke");
+    var list = POKE[who]; say(who, list[Math.floor(Math.random()*list.length)], 2600);
+  }
+  [["a","angel"],["d","devil"]].forEach(function(x){
+    var g = document.getElementById(x[1]);
+    g.addEventListener("click", function(){ poke(x[0]); });
+    g.addEventListener("keydown", function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); poke(x[0]); } });
+  });
+  function setFun(on){ state.fun = on; try{ localStorage.setItem("em26-fun", on ? "on" : "off"); }catch(e){} renderAll(); }
+  document.getElementById("funToggle").addEventListener("click", function(){ setFun(false); });
+  document.getElementById("funOn").addEventListener("click", function(){ setFun(true); });
 
   /* legend */
   function renderLegend(){
@@ -385,6 +621,13 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     if(r.market && r.market.slug){ var ml=el("a",{"class":"mlink",href:"https://polymarket.com/event/"+r.market.slug,target:"_blank",rel:"noopener"},"Рынок на Polymarket ↗"); card.appendChild(ml); }
     if(r.polls){ var p=el("p",{"class":"polls"}); p.appendChild(el("b",null,"Опросы: ")); p.appendChild(document.createTextNode(r.polls)); card.appendChild(p); }
     if(r.note) card.appendChild(el("p",{"class":"note"}, r.note));
+    var tr = trendOf(r);
+    if(tr && tr.delta!=null && Math.abs(tr.delta)>=1) card.appendChild(el("p",{"class":"note"}, "За неделю на рынке: " + fmtPct(r.prevProb) + " → " + fmtPct(r.dProb) + "."));
+    if(state.fun){
+      var qt = (tr && tr.dir==="red") ? "За неделю покраснел: дьявол подкрался незаметно." : (tr && tr.dir==="blue") ? "За неделю посинел: ангел отвоёвывает территорию." : QUIP[r.rating];
+      var side = (tr && tr.dir) ? (tr.dir==="red" ? "R" : "D") : (RATINGS[r.rating] ? RATINGS[r.rating].side : "T");
+      if(qt) card.appendChild(el("p",{"class":"quip"}, (side==="R" ? "😈 " : side==="D" ? "😇 " : "😇😈 ") + qt));
+    }
   }
 
   /* key races */
@@ -403,6 +646,8 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       if(who) b.appendChild(el("div",{"class":"c"}, who));
       if(r.dProb!=null){ var pb=el("div",{"class":"pbar"}); var dd=el("span",{"class":"d"}); dd.style.width=r.dProb+"%"; var rr=el("span",{"class":"r"}); rr.style.width=(100-r.dProb)+"%"; pb.appendChild(dd); pb.appendChild(rr); b.appendChild(pb);
         var pl=el("div",{"class":"plabels mono"}); pl.appendChild(el("span",{"class":"dtext"},(r.dLabel||"D")+" "+fmtPct(r.dProb))); pl.appendChild(el("span",{"class":"rtext"},"R "+fmtPct(100-r.dProb))); b.appendChild(pl); }
+      var tw = trendOf(r);
+      if(tw && tw.delta!=null && Math.abs(tw.delta)>=1) b.appendChild(el("div",{"class":"wk mono "+(tw.delta>0?"wkup":"wkdn")}, (tw.delta>0?"▲ ":"▼ ") + fmtNum(Math.abs(tw.delta)) + " за неделю" + (state.fun && tw.dir ? (tw.dir==="red" ? " 😈" : " 😇") : "")));
       b.addEventListener("click", function(){ select(r.st); document.getElementById("card").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth", block:"nearest"}); });
       box.appendChild(b);
     });
@@ -419,7 +664,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   function defaultSelection(){ var l = raceList(state.chamber).slice().sort(function(a,b){return closeness(a)-closeness(b);}); return l.length ? l[0].st : null; }
   document.querySelectorAll(".tab").forEach(function(t){ t.addEventListener("click", function(){ setChamber(t.getAttribute("data-ch")); }); });
 
-  function renderAll(){ paint(); renderLegend(); renderBars(); renderMeta(); renderCard(); renderRaces(); }
+  function renderAll(){ paint(); renderLegend(); renderBars(); renderMeta(); renderCard(); renderRaces(); renderFun(); }
   setChamber(state.chamber);
 
   /* theme changes: repaint colors read from tokens */

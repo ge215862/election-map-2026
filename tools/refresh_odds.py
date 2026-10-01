@@ -5,11 +5,15 @@ Same rules as the live /api/odds function and the page:
 D share = sum of outcome prices whose title matches race.market.d (default "(D)"),
 color band from that share, "safe" kept only when analysts say safe and the
 market agrees at 90% or more.
-Usage: python3 tools/refresh_odds.py
+Usage: python3 tools/refresh_odds.py [--new-week]
+--new-week first stores the current odds and colors as last week's baseline
+(prevProb, prevRating, meta.*.prevDemProb), which the page uses for
+"redder / bluer this week" and the angel vs devil barometer.
 """
 import datetime
 import json
 import os
+import sys
 import urllib.parse
 import urllib.request
 
@@ -56,6 +60,16 @@ def share(slug, match):
 
 data = json.load(open(PATH, encoding="utf-8"))
 stamp = datetime.date.today().strftime("%d.%m")
+if "--new-week" in sys.argv:
+    for r in data["races"]:
+        if r.get("dProb") is not None:
+            r["prevProb"] = r["dProb"]
+        r["prevRating"] = r["rating"]
+    for chamber in ("senate", "house"):
+        if data["meta"][chamber].get("demProb") is not None:
+            data["meta"][chamber]["prevDemProb"] = data["meta"][chamber]["demProb"]
+    data["meta"]["prevLabel"] = stamp
+    print("baseline moved to", stamp)
 for r in data["races"]:
     mk = r.get("market")
     if not mk:

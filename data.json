@@ -6,13 +6,15 @@
    "demProb": 62.5,
    "notUpD": 34,
    "notUpR": 31,
-   "foot": "Сейчас 53–47 у республиканцев. Демократам нужно 51 место: при 50 на 50 решает вице-президент Вэнс. Другие прогнозы: Нейт Сильвер 59%, DDHQ 55%."
+   "foot": "Сейчас 53–47 у республиканцев. Демократам нужно 51 место: при 50 на 50 решает вице-президент Вэнс. Другие прогнозы: Нейт Сильвер 59%, DDHQ 55%.",
+   "prevDemProb": 62.5
   },
   "house": {
    "demProb": 92.5,
    "forecastD": 229,
    "forecastR": 206,
-   "foot": "Сейчас 220–215 у республиканцев. Прогноз DDHQ на 29.09: в среднем 229 на 206, шанс демократов 76%. Новые карты Техаса и Флориды почти уравновешены калифорнийской."
+   "foot": "Сейчас 220–215 у республиканцев. Прогноз DDHQ на 29.09: в среднем 229 на 206, шанс демократов 76%. Новые карты Техаса и Флориды почти уравновешены калифорнийской.",
+   "prevDemProb": 92.5
   },
   "governors": {
    "foot": "36 гонок. По DDHQ демократы фавориты в 20, спорных 4. Цвет на карте по моей сводной оценке."
@@ -128,7 +130,8 @@
   "markets": {
    "senate": "which-party-will-win-the-senate-in-2026",
    "house": "which-party-will-win-the-house-in-2026"
-  }
+  },
+  "prevLabel": "30.09"
  },
  "races": [
   {
@@ -149,7 +152,9 @@
    "dem": "Джонатан Крайс-Томкинс",
    "rep": "Бернадетт Уилсон",
    "dProb": 79.0,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 79.0,
+   "prevRating": "leanD"
   },
   {
    "chamber": "governor",
@@ -166,7 +171,9 @@
    "dem": "Даг Джонс",
    "rep": "Томми Тубервилл",
    "dProb": 9.0,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 9.0,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -183,7 +190,9 @@
    "dem": "Фредрик Лав",
    "rep": "Сара Хакаби Сандерс",
    "dProb": 2.8,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 2.8,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -199,7 +208,9 @@
    "market": {
     "slug": "arizona-governor-winner-2026"
    },
-   "baseRating": "likelyD"
+   "baseRating": "likelyD",
+   "prevProb": 88.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -209,7 +220,8 @@
    "rating": "safeD",
    "status": "Демократический штат",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -225,7 +237,9 @@
    "dem": "Фил Вайзер",
    "rep": "Виктор Маркс",
    "dProb": 96.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -242,7 +256,9 @@
    "dem": "Нед Ламонт",
    "rep": "Райан Фацио",
    "dProb": 96.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.5,
+   "prevRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -260,7 +276,9 @@
    "market": {
     "slug": "florida-governor-winner-2026"
    },
-   "baseRating": "leanR"
+   "baseRating": "leanR",
+   "prevProb": 21.5,
+   "prevRating": "leanR"
   },
   {
    "chamber": "governor",
@@ -278,7 +296,9 @@
    "market": {
     "slug": "georgia-governor-winner-2026"
    },
-   "baseRating": "tossup"
+   "baseRating": "tossup",
+   "prevProb": 51.5,
+   "prevRating": "tossup"
   },
   {
    "chamber": "governor",
@@ -295,7 +315,9 @@
    "dem": "Джош Грин",
    "rep": "Гэри Кордери",
    "dProb": 97.4,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 97.4,
+   "prevRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -313,7 +335,9 @@
    "baseRating": "tossup",
    "rep": "Зак Лан",
    "dProb": 84.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 84.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -330,7 +354,9 @@
    "dem": "Терри Пикенс",
    "rep": "Брэд Литтл",
    "dProb": 2.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 2.5,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -347,7 +373,9 @@
    "dem": "Джей Би Прицкер",
    "rep": "Даррен Бейли",
    "dProb": 96.4,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.4,
+   "prevRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -364,7 +392,9 @@
    "dem": "Синди Холшер",
    "rep": "Тай Мастерсон",
    "dProb": 27.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 27.5,
+   "prevRating": "leanR"
   },
   {
    "chamber": "governor",
@@ -381,7 +411,9 @@
    "dem": "Мора Хили",
    "rep": "Майкл Миног",
    "dProb": 96.2,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.2,
+   "prevRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -398,7 +430,9 @@
    "dem": "Уэс Мур",
    "rep": "Дэн Кокс",
    "dProb": 96.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.5,
+   "prevRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -415,7 +449,9 @@
    "dem": "Ханна Пингри",
    "rep": "Роберт Чарльз",
    "dProb": 96.0,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.0,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -432,7 +468,9 @@
    },
    "baseRating": "leanD",
    "dProb": 91.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 91.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -448,7 +486,9 @@
    "dem": "Эми Клобушар",
    "rep": "Лиза Демут",
    "dProb": 95.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 95.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -465,7 +505,9 @@
    "dem": "Линн Уолз",
    "rep": "Джим Пиллен",
    "dProb": 9.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 9.5,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -481,7 +523,9 @@
    "dem": "Синди Уормингтон",
    "rep": "Келли Эйотт",
    "dProb": 3.8,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 3.8,
+   "prevRating": "likelyR"
   },
   {
    "chamber": "governor",
@@ -497,7 +541,9 @@
    "dem": "Деб Холанд",
    "rep": "Грегг Халл",
    "dProb": 95.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 95.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -514,7 +560,9 @@
    "market": {
     "slug": "nevada-governor-winner-2026"
    },
-   "baseRating": "tossup"
+   "baseRating": "tossup",
+   "prevProb": 48.5,
+   "prevRating": "tossup"
   },
   {
    "chamber": "governor",
@@ -530,7 +578,9 @@
    "dem": "Кэти Хокул",
    "rep": "Брюс Блейкман",
    "dProb": 95.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 95.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -547,7 +597,9 @@
    "market": {
     "slug": "ohio-governor-winner-2026"
    },
-   "baseRating": "tossup"
+   "baseRating": "tossup",
+   "prevProb": 60.5,
+   "prevRating": "tossup"
   },
   {
    "chamber": "governor",
@@ -564,7 +616,9 @@
    "dem": "Синди Мансон",
    "rep": "Майк Маззеи",
    "dProb": 7.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 7.5,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -580,7 +634,9 @@
    "dem": "Тина Котек",
    "rep": "Кристин Дрейзан",
    "dProb": 80.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 80.5,
+   "prevRating": "leanD"
   },
   {
    "chamber": "governor",
@@ -596,7 +652,9 @@
    "dem": "Джош Шапиро",
    "rep": "Стейси Гаррити",
    "dProb": 96.9,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.9,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -612,7 +670,9 @@
    "baseRating": "safeD",
    "dem": "Хелена Фулкс",
    "dProb": 96.7,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 96.7,
+   "prevRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -629,7 +689,9 @@
    "dem": "Джермейн Джонсон",
    "rep": "Алан Уилсон",
    "dProb": 4.8,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 4.8,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -646,7 +708,9 @@
    "dem": "Дэн Алерс",
    "rep": "Ларри Роден",
    "dProb": 2.7,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 2.7,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -663,7 +727,9 @@
    "dem": "Джерри Грин",
    "rep": "Марша Блэкберн",
    "dProb": 3.6,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 3.6,
+   "prevRating": "safeR"
   },
   {
    "chamber": "governor",
@@ -680,7 +746,9 @@
    "dem": "Джина Инохоса",
    "rep": "Грег Эбботт",
    "dProb": 20.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 20.5,
+   "prevRating": "leanR"
   },
   {
    "chamber": "governor",
@@ -696,7 +764,9 @@
    "dem": "Аманда Джану",
    "rep": "Фил Скотт",
    "dProb": 17.1,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 17.1,
+   "prevRating": "likelyR"
   },
   {
    "chamber": "governor",
@@ -713,7 +783,9 @@
    "market": {
     "slug": "wisconsin-governor-winner-2026"
    },
-   "baseRating": "leanD"
+   "baseRating": "leanD",
+   "prevProb": 80.5,
+   "prevRating": "leanD"
   },
   {
    "chamber": "governor",
@@ -730,7 +802,9 @@
    "dem": "Кеннет Каснер",
    "rep": "Эрик Барлоу",
    "dProb": 2.9,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 2.9,
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -751,7 +825,9 @@
      "Mary Peltola"
     ]
    },
-   "baseRating": "leanD"
+   "baseRating": "leanD",
+   "prevProb": 72.5,
+   "prevRating": "leanD"
   },
   {
    "chamber": "senate",
@@ -761,7 +837,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -771,7 +848,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -781,7 +859,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -791,7 +870,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -810,7 +890,9 @@
    "market": {
     "slug": "florida-senate-election-winner"
    },
-   "baseRating": "likelyR"
+   "baseRating": "likelyR",
+   "prevProb": 8.5,
+   "prevRating": "likelyR"
   },
   {
    "chamber": "senate",
@@ -828,7 +910,9 @@
    "market": {
     "slug": "georgia-senate-election-winner"
    },
-   "baseRating": "likelyD"
+   "baseRating": "likelyD",
+   "prevProb": 95.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "senate",
@@ -846,7 +930,9 @@
    "market": {
     "slug": "iowa-senate-election-winner"
    },
-   "baseRating": "tossup"
+   "baseRating": "tossup",
+   "prevProb": 41.5,
+   "prevRating": "tossup"
   },
   {
    "chamber": "senate",
@@ -856,7 +942,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -866,7 +953,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -883,7 +971,9 @@
    "dem": "Адам Гамильтон",
    "rep": "Роджер Маршалл",
    "dProb": 28.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 28.5,
+   "prevRating": "leanR"
   },
   {
    "chamber": "senate",
@@ -893,7 +983,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -903,7 +994,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -913,7 +1005,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -931,7 +1024,9 @@
    "market": {
     "slug": "maine-senate-election-winner"
    },
-   "baseRating": "leanD"
+   "baseRating": "leanD",
+   "prevProb": 69.5,
+   "prevRating": "leanD"
   },
   {
    "chamber": "senate",
@@ -949,7 +1044,9 @@
    },
    "baseRating": "leanD",
    "dProb": 72.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 72.5,
+   "prevRating": "leanD"
   },
   {
    "chamber": "senate",
@@ -966,7 +1063,9 @@
    "dem": "Пегги Флэнаган",
    "rep": "Мишель Тафойя",
    "dProb": 90.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 90.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "senate",
@@ -976,7 +1075,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -986,7 +1086,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -1004,7 +1105,9 @@
    "market": {
     "slug": "north-carolina-senate-election-winner"
    },
-   "baseRating": "likelyD"
+   "baseRating": "likelyD",
+   "prevProb": 95.5,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "senate",
@@ -1026,7 +1129,9 @@
      "Independent"
     ]
    },
-   "baseRating": "leanR"
+   "baseRating": "leanR",
+   "prevProb": 29.5,
+   "prevRating": "leanR"
   },
   {
    "chamber": "senate",
@@ -1044,7 +1149,9 @@
    "market": {
     "slug": "new-hampshire-senate-election-winner"
    },
-   "baseRating": "likelyD"
+   "baseRating": "likelyD",
+   "prevProb": 86,
+   "prevRating": "likelyD"
   },
   {
    "chamber": "senate",
@@ -1054,7 +1161,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -1064,7 +1172,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -1083,7 +1192,9 @@
    "market": {
     "slug": "ohio-senate-election-winner"
    },
-   "baseRating": "tossup"
+   "baseRating": "tossup",
+   "prevProb": 59.5,
+   "prevRating": "tossup"
   },
   {
    "chamber": "senate",
@@ -1093,7 +1204,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -1103,7 +1215,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -1113,7 +1226,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -1130,7 +1244,9 @@
    "dem": "Энни Эндрюс",
    "rep": "Дарлин Грэм",
    "dProb": 13.5,
-   "probSrc": "Polymarket, 01.10"
+   "probSrc": "Polymarket, 01.10",
+   "prevProb": 13.5,
+   "prevRating": "likelyR"
   },
   {
    "chamber": "senate",
@@ -1140,7 +1256,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -1150,7 +1267,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -1168,7 +1286,9 @@
    "market": {
     "slug": "texas-senate-election-winner"
    },
-   "baseRating": "leanD"
+   "baseRating": "leanD",
+   "prevProb": 62.5,
+   "prevRating": "leanD"
   },
   {
    "chamber": "senate",
@@ -1178,7 +1298,8 @@
    "rating": "safeD",
    "status": "Демократическое место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeD"
+   "baseRating": "safeD",
+   "prevRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -1188,7 +1309,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -1198,7 +1320,8 @@
    "rating": "safeR",
    "status": "Республиканское место",
    "note": "Надёжное место, серьёзной борьбы нет.",
-   "baseRating": "safeR"
+   "baseRating": "safeR",
+   "prevRating": "safeR"
   }
  ]
 }
