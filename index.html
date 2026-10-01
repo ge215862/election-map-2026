@@ -157,11 +157,14 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
 .funbar{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .fun .mood{font-family:var(--f-display);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1;text-transform:uppercase}
 .fun[data-mood="doom"] .mood,.fun[data-mood="red"] .mood{color:var(--safeR)}
+.fun .trendline.wkdn{color:var(--safeR)} .fun .trendline.wkup{color:var(--safeD)}
 .fun[data-mood="heaven"] .mood,.fun[data-mood="blue"] .mood{color:var(--safeD)}
 .fun[data-mood="tug"] .mood{color:var(--toss)}
 .fun[data-mood="doom"] .mood{animation:alarm 1.6s ease-in-out infinite}
 @keyframes alarm{0%,100%{transform:none}8%{transform:translateX(-3px) rotate(-1deg)}16%{transform:translateX(3px) rotate(1deg)}24%{transform:none}}
 .fun .quip{font-size:15px}
+.fun .trendline{font-size:14px;font-weight:600}
+.fun .trendline.alarm{animation:alarm 1.6s ease-in-out infinite}
 .fun .wk{font-size:13px;color:var(--muted);display:grid;gap:3px}
 .fun .wk b{color:var(--ink);font-weight:600}
 .funtoggle{font:inherit;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:3px;padding:3px 9px;cursor:pointer;white-space:nowrap}
@@ -192,7 +195,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
 .race .wk{font-size:12px}
 .wkup{color:var(--safeD)} .wkdn{color:var(--safeR)}
 .card .quip{font-size:13.5px;font-style:italic;color:var(--accent)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}.ang-wing,.halo,.dev-tail,.flame,.spark,.who.poke,.fun .mood{animation:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.ang-wing,.halo,.dev-tail,.flame,.spark,.who.poke,.fun .mood,.fun .trendline{animation:none!important}}
 </style>
 </head>
 <body>
@@ -321,6 +324,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       <div class="funbar"><span class="eyebrow">Барометр души Америки</span><button class="funtoggle" id="funToggle" type="button">Скрыть</button></div>
       <div class="mood" id="funMood">Чистилище</div>
       <div class="quip" id="funQuip"></div>
+      <div class="trendline" id="funTrend"></div>
       <div class="wk" id="funWeek"></div>
       <div class="eyebrow">Ткни в ангела или дьявола</div>
     </div>
@@ -483,12 +487,20 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   }
 
   /* fun: angel vs devil barometer */
+  /* headline = who is ahead in the Senate tug; the weekly shift is a separate, smaller line */
   var FUN = {
-    doom:{t:"Америка погибает", q:"Дьявол празднует, ангел ушёл за подкреплением.", say:["d","Ха-ха! Америка погибает!"]},
-    red:{t:"Краснеет", q:"Дьявол точит вилы и присматривается к Капитолию.", say:["d","Ещё чуть-чуть…"]},
-    tug:{t:"Чистилище", q:"Ангел и дьявол тянут Америку каждый к себе. Пока ничья.", say:null},
-    blue:{t:"Синеет", q:"Ангел полирует нимб и репетирует на арфе.", say:["a","Держимся, братья!"]},
-    heaven:{t:"Ангелы поют", q:"Америка спасена. По крайней мере до следующего опроса.", say:["a","Аллилуйя!"]}
+    doom:{t:"Америка погибает", q:"Дьявол почти перетянул Сенат. Ангел ушёл за подкреплением.", say:["d","Ха-ха! Америка погибает!"]},
+    red:{t:"Дьявол ведёт", q:"Дьявол перетягивает Сенат, ангел упирается крыльями.", say:["d","Моё!"]},
+    tug:{t:"Чистилище", q:"Ангел и дьявол тянут Сенат каждый к себе. Почти ничья.", say:null},
+    blue:{t:"Ангел ведёт", q:"Ангел перетягивает Сенат. Дьявол точит вилы и ждёт ошибки.", say:["a","Держимся, братья!"]},
+    heaven:{t:"Ангелы поют", q:"Сенат почти у синих. По крайней мере до следующего опроса.", say:["a","Аллилуйя!"]}
+  };
+  var TREND = {
+    doom:{t:"😈 За неделю резко покраснело: Америка погибает!", c:"wkdn alarm", say:["d","Ещё чуть-чуть…"]},
+    red:{t:"😈 За неделю краснеет: дьявол поднажал", c:"wkdn", say:["d","Ещё чуть-чуть…"]},
+    flat:{t:"За неделю без перемен", c:"", say:null},
+    blue:{t:"😇 За неделю синеет: ангел поднажал", c:"wkup", say:["a","Не сдаёмся!"]},
+    heaven:{t:"😇 За неделю резко посинело: ангелы поют", c:"wkup", say:["a","Аллилуйя!"]}
   };
   var POKE = {a:["Аллилуйя!","Всё будет хорошо","Не трогай нимб","Голосуйте досрочно!"], d:["Америка погибает!","Ха-ха-ха!","Вилы наточены","Я ещё вернусь"]};
   var QUIP = {safeD:"Ангел тут даже не напрягается.", likelyD:"Ангел спокоен, но арфу из рук не выпускает.", leanD:"Ангел впереди, но дьявол дышит в затылок.", tossup:"Ангел и дьявол разыгрывают этот штат в камень-ножницы-бумагу.", leanR:"Дьявол впереди, но ангел ещё не сдал крылья.", likelyR:"Дьявол уже присматривает тут недвижимость.", safeR:"Дьявол тут прописан с рождения."};
@@ -497,9 +509,9 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     var sen = (state.meta||{}).senate || {}, p = sen.demProb, prev = sen.prevDemProb;
     var d = (p!=null && prev!=null) ? Math.round((p-prev)*10)/10 : 0, red = [], blue = [];
     for(var k in state.races){ var r = state.races[k], t = trendOf(r); if(t && t.dir==="red") red.push([r,t]); if(t && t.dir==="blue") blue.push([r,t]); }
-    var m = (p!=null && (p<=40 || d<=-5)) ? "doom" : (d<=-2 || red.length>blue.length) ? "red"
-          : (p!=null && (p>=75 || d>=5)) ? "heaven" : (d>=2 || blue.length>red.length) ? "blue" : "tug";
-    return {key:m, p:p, d:d, red:red, blue:blue};
+    var key = p==null ? "tug" : p>=75 ? "heaven" : p>=55 ? "blue" : p>45 ? "tug" : p>25 ? "red" : "doom";
+    var trend = d<=-5 ? "doom" : (d<=-2 || red.length>blue.length) ? "red" : d>=5 ? "heaven" : (d>=2 || blue.length>red.length) ? "blue" : "flat";
+    return {key:key, trend:trend, p:p, d:d, red:red, blue:blue};
   }
   function say(who, text, ms){
     var g = document.getElementById(who==="a" ? "bubA" : "bubD"); if(!g) return;
@@ -512,18 +524,24 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     clearTimeout(g._t);
     if(ms) g._t = setTimeout(funSpeech, ms);
   }
-  function funSpeech(){ say("a",""); say("d",""); var F = FUN[state.funKey||"tug"]; if(F.say) say(F.say[0], F.say[1]); }
+  function funSpeech(){
+    say("a",""); say("d","");
+    var F = FUN[state.funKey||"tug"], T = TREND[state.funTrend||"flat"];
+    if(F.say) say(F.say[0], F.say[1]);
+    if(T.say && (!F.say || T.say[0]!==F.say[0])) say(T.say[0], T.say[1]);
+  }
   function renderFun(){
     var box = document.getElementById("fun"), off = document.getElementById("funOff");
     box.hidden = !state.fun; off.hidden = state.fun;
     if(!state.fun) return;
     var m = funMood(), forced = null;
     try{ forced = new URLSearchParams(location.search).get("mood"); }catch(e){}
-    if(forced && FUN[forced]){ m.key = forced; m.preview = {doom:28, red:44, tug:50, blue:58, heaven:86}[forced]; }
-    var F = FUN[m.key]; state.funKey = m.key;
+    if(forced && FUN[forced]){ m.key = forced; m.preview = {doom:20, red:40, tug:50, blue:62, heaven:86}[forced]; m.trend = {doom:"doom", red:"red", tug:"flat", blue:"blue", heaven:"heaven"}[forced]; }
+    var F = FUN[m.key], T = TREND[m.trend]; state.funKey = m.key; state.funTrend = m.trend;
     box.setAttribute("data-mood", m.key);
     document.getElementById("funMood").textContent = F.t;
     document.getElementById("funQuip").textContent = F.q;
+    var tl = document.getElementById("funTrend"); tl.textContent = T.t; tl.className = "trendline " + T.c;
     var wk = document.getElementById("funWeek"); wk.textContent = "";
     var hp = ((state.meta||{}).house||{}).demProb;
     if(hp!=null){ var l0 = el("div"); l0.appendChild(document.createTextNode("Канат это Сенат: Палата почти наверняка у синих (" + fmtPct(hp) + "), спор идёт за Сенат.")); wk.appendChild(l0); }
@@ -535,15 +553,18 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     });
     if(m.preview!=null) wk.insertBefore(el("div",null,"Это превью режима, цифры ниже настоящие."), wk.firstChild);
     var p = m.preview!=null ? m.preview : m.p!=null ? m.p : 50, lead = Math.max(-1, Math.min(1, (p-50)/50));
-    document.getElementById("knot").style.transform = "translate(" + (-130*lead) + "px,0)";
-    document.getElementById("knotLbl").textContent = m.p!=null ? fmtPct(m.p) : "";
-    document.getElementById("angelLean").style.transform = "rotate(" + (-8*lead) + "deg) scale(" + (1+0.08*lead) + ")";
-    document.getElementById("devilLean").style.transform = "rotate(" + (-8*lead) + "deg) scale(" + (1-0.08*lead) + ")";
+    var pull = (lead<0 ? -1 : 1) * Math.pow(Math.abs(lead), 0.6);   /* a 12-point lead should be visible, not a nudge */
+    document.getElementById("knot").style.transform = "translate(" + (-140*pull) + "px,0)";
+    var kp = m.preview!=null ? m.preview : m.p;
+    document.getElementById("knotLbl").textContent = kp!=null ? "синие " + fmtPct(kp) : "";
+    document.getElementById("angelLean").style.transform = "rotate(" + (-8*pull) + "deg) scale(" + (1+0.08*pull) + ")";
+    document.getElementById("devilLean").style.transform = "rotate(" + (-8*pull) + "deg) scale(" + (1-0.08*pull) + ")";
     var hot = m.key==="doom" || m.key==="red", holy = m.key==="heaven" || m.key==="blue";
-    document.getElementById("fx-flames").style.opacity = hot ? 1 : .25;
-    document.getElementById("bgHell").style.opacity = hot ? 1 : .35;
-    document.getElementById("fx-sparks").style.opacity = holy ? 1 : .3;
-    document.getElementById("bgHeaven").style.opacity = holy ? 1 : .45;
+    var hotT = m.trend==="doom" || m.trend==="red", holyT = m.trend==="heaven" || m.trend==="blue";
+    document.getElementById("fx-flames").style.opacity = hot ? 1 : hotT ? .6 : .2;
+    document.getElementById("bgHell").style.opacity = hot ? 1 : hotT ? .6 : .3;
+    document.getElementById("fx-sparks").style.opacity = holy ? 1 : holyT ? .6 : .25;
+    document.getElementById("bgHeaven").style.opacity = holy ? 1 : holyT ? .6 : .4;
     document.getElementById("funToggle").textContent = "Скрыть";
     funSpeech();
   }
