@@ -167,6 +167,9 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
 .fun .trendline.alarm{animation:alarm 1.6s ease-in-out infinite}
 .fun .wk{font-size:13px;color:var(--muted);display:grid;gap:3px}
 .fun .wk b{color:var(--ink);font-weight:600}
+.fun .demo{border:1px dashed var(--accent);border-radius:4px;padding:8px 10px;font-size:13.5px;color:var(--ink);background:color-mix(in srgb, var(--accent) 12%, transparent)}
+.fun .demo b{color:var(--accent);text-transform:uppercase;letter-spacing:.05em;font-size:12px;display:block;margin-bottom:2px}
+.fun .demo a{color:var(--accent);font-weight:600}
 .funtoggle{font:inherit;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:3px;padding:3px 9px;cursor:pointer;white-space:nowrap}
 .funoff{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:center}
 .svgsm{font-family:var(--f-mono);font-size:11px;fill:currentColor}
@@ -606,7 +609,13 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       l.appendChild(document.createTextNode(x[0].length ? x[0].map(function(y){ var r=y[0], t=y[1]; return (r.name||RU[r.st]) + " (" + (r.chamber==="senate" ? "Сенат" : "губернатор") + (t.delta ? ", " + signed(t.delta) : "") + ")"; }).join(", ") : "никто"));
       wk.appendChild(l);
     });
-    if(m.preview!=null) wk.insertBefore(el("div",null,"Это превью режима, цифры ниже настоящие."), wk.firstChild);
+    if(m.preview!=null){
+      wk.textContent = "";
+      var dm = el("div",{"class":"demo"}); dm.appendChild(el("b",null,"Демонстрация, не настоящие данные"));
+      dm.appendChild(document.createTextNode("Так барометр выглядит, если у синих " + fmtPct(m.preview) + " на Сенат. На самом деле сейчас " + (m.p!=null ? fmtPct(m.p) : "…") + ". "));
+      dm.appendChild(el("a",{href:location.pathname},"Показать настоящие")); wk.appendChild(dm);
+      tl.textContent = "";
+    }
     var p = m.preview!=null ? m.preview : m.p!=null ? m.p : 50, lead = Math.max(-1, Math.min(1, (p-50)/50));
     var pull = (lead<0 ? -1 : 1) * Math.pow(Math.abs(lead), 0.6);   /* a 12-point lead should be visible, not a nudge */
     document.getElementById("rig").style.transform = "translateX(" + (-85*pull) + "px)";
@@ -618,7 +627,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     dA.setAttribute("class", "dust" + (pull<-0.12 ? " on" : "")); dA.style.setProperty("--dx", "-9px");
     dD.setAttribute("class", "dust" + (pull>0.12 ? " on" : "")); dD.style.setProperty("--dx", "9px");
     var kp = m.preview!=null ? m.preview : m.p;
-    document.getElementById("knotLbl").textContent = kp!=null ? "синие " + fmtPct(kp) : "";
+    document.getElementById("knotLbl").textContent = kp!=null ? "синие " + fmtPct(kp) + (m.preview!=null ? " · пример" : "") : "";
     document.getElementById("angelLean").style.transform = "rotate(" + (-8*pull) + "deg) scale(" + (1+0.08*pull) + ")";
     document.getElementById("devilLean").style.transform = "rotate(" + (-8*pull) + "deg) scale(" + (1-0.08*pull) + ")";
     var hot = m.key==="doom" || m.key==="red", holy = m.key==="heaven" || m.key==="blue";
