@@ -89,4 +89,12 @@ for chamber, slug in (data["meta"].get("markets") or {}).items():
         print("control %s: %s -> %s" % (chamber, data["meta"][chamber].get("demProb"), p))
         data["meta"][chamber]["demProb"] = p
 
+bal = data["meta"].get("balance")
+if bal:
+    for oid, title in bal["outcomes"].items():
+        p = share(bal["slug"], [title])
+        if p is not None:
+            bal["values"][oid] = p
+    print("balance:", bal["values"])
+
 json.dump(data, open(PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

@@ -125,13 +125,36 @@
    {
     "label": "Википедия: губернатор, Аляска 2026",
     "url": "https://en.wikipedia.org/wiki/2026_Alaska_gubernatorial_election"
+   },
+   {
+    "label": "Polymarket: расклад сил в Конгрессе",
+    "url": "https://polymarket.com/event/balance-of-power-2026-midterms"
+   },
+   {
+    "label": "American Immigration Council: деньги на ICE в законе 2025 года",
+    "url": "https://www.americanimmigrationcouncil.org/fact-sheet/big-beautiful-bill-immigration-border-security/"
    }
   ],
   "markets": {
    "senate": "which-party-will-win-the-senate-in-2026",
    "house": "which-party-will-win-the-house-in-2026"
   },
-  "prevLabel": "30.09"
+  "prevLabel": "30.09",
+  "balance": {
+   "slug": "balance-of-power-2026-midterms",
+   "outcomes": {
+    "sweepD": "Democrats Sweep",
+    "houseD": "R Senate, D House",
+    "senateD": "D Senate, R House",
+    "sweepR": "Republicans Sweep"
+   },
+   "values": {
+    "sweepD": 62.5,
+    "houseD": 28.5,
+    "senateD": 0.9,
+    "sweepR": 7.5
+   }
+  }
  },
  "races": [
   {
@@ -314,7 +337,7 @@
    "baseRating": "safeD",
    "dem": "Джош Грин",
    "rep": "Гэри Кордери",
-   "dProb": 97.4,
+   "dProb": 97.5,
    "probSrc": "Polymarket, 01.10",
    "prevProb": 97.4,
    "prevRating": "safeD"
@@ -372,7 +395,7 @@
    "baseRating": "safeD",
    "dem": "Джей Би Прицкер",
    "rep": "Даррен Бейли",
-   "dProb": 96.4,
+   "dProb": 96.8,
    "probSrc": "Polymarket, 01.10",
    "prevProb": 96.4,
    "prevRating": "safeD"
@@ -504,7 +527,7 @@
    "baseRating": "safeR",
    "dem": "Линн Уолз",
    "rep": "Джим Пиллен",
-   "dProb": 9.5,
+   "dProb": 9.0,
    "probSrc": "Polymarket, 01.10",
    "prevProb": 9.5,
    "prevRating": "safeR"
@@ -522,7 +545,7 @@
    "baseRating": "likelyR",
    "dem": "Синди Уормингтон",
    "rep": "Келли Эйотт",
-   "dProb": 3.8,
+   "dProb": 3.9,
    "probSrc": "Polymarket, 01.10",
    "prevProb": 3.8,
    "prevRating": "likelyR"
@@ -651,7 +674,7 @@
    "baseRating": "likelyD",
    "dem": "Джош Шапиро",
    "rep": "Стейси Гаррити",
-   "dProb": 96.9,
+   "dProb": 97.0,
    "probSrc": "Polymarket, 01.10",
    "prevProb": 96.9,
    "prevRating": "likelyD"
@@ -707,7 +730,7 @@
    "baseRating": "safeR",
    "dem": "Дэн Алерс",
    "rep": "Ларри Роден",
-   "dProb": 2.7,
+   "dProb": 2.8,
    "probSrc": "Polymarket, 01.10",
    "prevProb": 2.7,
    "prevRating": "safeR"

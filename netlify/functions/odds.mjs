@@ -5,10 +5,17 @@ import data from "../../data.json";
 
 const GAMMA = "https://gamma-api.polymarket.com/events?slug=";
 
-async function share(slug, match) {
+async function fetchEvent(slug) {
   const res = await fetch(GAMMA + encodeURIComponent(slug), { headers: { "User-Agent": "Mozilla/5.0" } });
   if (!res.ok) return null;
   const [event] = await res.json();
+  return event || null;
+}
+
+// the cache lives for one request, so several outcomes of one market cost one fetch
+async function share(cache, slug, match) {
+  if (!cache.has(slug)) cache.set(slug, fetchEvent(slug));
+  const event = await cache.get(slug);
   if (!event) return null;
   let total = 0, hit = false;
   for (const m of event.markets || []) {
@@ -24,12 +31,13 @@ async function share(slug, match) {
 }
 
 async function pool(jobs, size) {
+  const cache = new Map();
   const out = [];
   let i = 0;
   async function worker() {
     while (i < jobs.length) {
       const job = jobs[i++];
-      try { out.push([job.key, await share(job.slug, job.match)]); } catch { /* skip this race */ }
+      try { out.push([job.key, await share(cache, job.slug, job.match)]); } catch { /* skip this race */ }
     }
   }
   await Promise.all(Array.from({ length: size }, worker));
@@ -43,6 +51,10 @@ export default async () => {
   }
   for (const [chamber, slug] of Object.entries(data.meta.markets || {})) {
     jobs.push({ key: `control-${chamber}`, slug, match: ["Democratic"] });
+  }
+  const balance = data.meta.balance;
+  if (balance) {
+    for (const [id, title] of Object.entries(balance.outcomes)) jobs.push({ key: `balance-${id}`, slug: balance.slug, match: [title] });
   }
   const odds = {};
   for (const [k, p] of await pool(jobs, 8)) if (p != null) odds[k] = p;

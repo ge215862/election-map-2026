@@ -130,7 +130,23 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
 .method ul{margin:0;padding-left:18px;display:grid;gap:3px}
 .method a{color:var(--ink)}
 
-/* fun: angel vs devil barometer (joke block, can be switched off) */
+/* power: what each Congress outcome changes */
+.power{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:12px}
+.power[hidden]{display:none!important}
+.power h2{font-size:18px;text-transform:uppercase;display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.power h2 .odds{font-family:var(--f-mono);font-size:13px;font-weight:500;text-transform:none;color:var(--muted)}
+.scen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.scen{grid-template-columns:1fr}}
+.scen .s{border-top:4px solid var(--none);padding-top:8px;display:grid;gap:4px;align-content:start}
+.scen .s .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.scen .s .nm{font-family:var(--f-display);font-size:17px;font-weight:600;text-transform:uppercase}
+.scen .s .pc{font-family:var(--f-mono);font-size:20px;font-weight:500}
+.scen .s .tag{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.scen .s p{margin:0;font-size:13.5px;color:var(--muted)}
+.power .foot{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.svgk{font-family:var(--f-mono);font-size:13px;font-weight:600;fill:var(--ink)}
+
+/* fun: angel vs devil barometer, can be hidden */
 .fun{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:8px 22px;align-items:center;overflow:hidden}
 .fun[hidden],.funoff[hidden]{display:none!important}
 @media (max-width:900px){.fun{grid-template-columns:1fr}}
@@ -211,7 +227,14 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     </div>
   </section>
 
-  <section class="fun" id="fun" data-mood="tug" aria-label="Шуточный барометр: ангел против дьявола">
+  <section class="power" id="power" aria-label="Что меняет каждый расклад в Конгрессе">
+    <h2>Что решают выборы <span class="odds" id="powerOdds">расклад Конгресса на Polymarket</span></h2>
+    <div class="strip" id="stripPower"></div>
+    <div class="scen" id="scen"></div>
+    <div class="foot">При любом раскладе Трамп остаётся президентом до 20 января 2029: вето, указы и тарифы остаются у него. Преодолеть вето можно только двумя третями обеих палат, снять президента может только Сенат голосами 67 сенаторов, таких цифр нет ни у кого. Деньги ICE до 30.09.2029 уже выделены законом июля 2025 года, около $75 млрд. Новый Конгресс начинает работу 3 января 2027.</div>
+  </section>
+
+  <section class="fun" id="fun" data-mood="tug" aria-label="Барометр души Америки: ангел против дьявола">
     <svg viewBox="0 0 640 232" role="img" aria-label="Ангел и дьявол перетягивают канат с флагом США. Чем выше шансы синих, тем ближе флаг к ангелу.">
       <defs>
         <radialGradient id="gHeaven" cx="18%" cy="45%" r="55%"><stop offset="0" stop-color="#9ab6ea" stop-opacity=".55"/><stop offset="1" stop-color="#9ab6ea" stop-opacity="0"/></radialGradient>
@@ -222,7 +245,9 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       <g fill="#e9effb"><ellipse cx="112" cy="207" rx="62" ry="11"/><ellipse cx="82" cy="200" rx="26" ry="12"/><ellipse cx="136" cy="198" rx="30" ry="14"/></g>
       <path d="M430 232 Q462 206 520 207 Q586 199 640 205 L640 232 Z" fill="#5a1a1f"/>
       <line x1="325" y1="34" x2="325" y2="212" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="4 5"/>
-      <text x="325" y="227" text-anchor="middle" class="svgsm">50 на 50</text>
+      <text x="325" y="227" text-anchor="middle" class="svgsm">ничья</text>
+      <text x="16" y="227" class="svgsm">← синие берут Сенат</text>
+      <text x="624" y="227" text-anchor="end" class="svgsm" style="fill:#ffd2c2">красные держат Сенат →</text>
       <g id="fx-sparks" fill="#f5c542">
         <path class="spark" d="M40 52 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z"/>
         <path class="spark" d="M196 44 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/>
@@ -240,6 +265,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       <path d="M158 140 Q325 152 492 140" fill="none" stroke="#b58b4c" stroke-width="5" stroke-linecap="round"/>
       <path d="M158 140 Q325 152 492 140" fill="none" stroke="#7d5a2b" stroke-width="5" stroke-dasharray="3 6"/>
       <g id="knot"><g transform="translate(325 146)">
+        <text id="knotLbl" y="-11" text-anchor="middle" class="svgk"></text>
         <circle r="4" fill="#7d5a2b"/>
         <g transform="translate(-17 4)">
           <rect width="34" height="21" fill="#ffffff" stroke="#c9ced8" stroke-width=".6"/>
@@ -292,14 +318,14 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       </g>
     </svg>
     <div class="say">
-      <div class="funbar"><span class="eyebrow">Барометр души Америки · шутка</span><button class="funtoggle" id="funToggle" type="button">Выключить шутки</button></div>
+      <div class="funbar"><span class="eyebrow">Барометр души Америки</span><button class="funtoggle" id="funToggle" type="button">Скрыть</button></div>
       <div class="mood" id="funMood">Чистилище</div>
       <div class="quip" id="funQuip"></div>
       <div class="wk" id="funWeek"></div>
       <div class="eyebrow">Ткни в ангела или дьявола</div>
     </div>
   </section>
-  <div class="funoff" id="funOff" hidden>Шуточный барометр выключен. <button class="funtoggle" id="funOn" type="button">Включить</button></div>
+  <div class="funoff" id="funOff" hidden>Барометр души Америки скрыт. <button class="funtoggle" id="funOn" type="button">Показать</button></div>
 
   <div class="ctx" id="ctx"></div>
 
@@ -499,6 +525,8 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     document.getElementById("funMood").textContent = F.t;
     document.getElementById("funQuip").textContent = F.q;
     var wk = document.getElementById("funWeek"); wk.textContent = "";
+    var hp = ((state.meta||{}).house||{}).demProb;
+    if(hp!=null){ var l0 = el("div"); l0.appendChild(document.createTextNode("Канат это Сенат: Палата почти наверняка у синих (" + fmtPct(hp) + "), спор идёт за Сенат.")); wk.appendChild(l0); }
     if(m.p!=null){ var l = el("div"); l.appendChild(document.createTextNode("Шанс синих взять Сенат: ")); l.appendChild(el("b",null,fmtPct(m.p))); l.appendChild(document.createTextNode(", за неделю " + signed(m.d))); wk.appendChild(l); }
     [[m.red,"Покраснели 😈"],[m.blue,"Посинели 😇"]].forEach(function(x){
       var l = el("div"); l.appendChild(el("b",null,x[1]+": "));
@@ -508,6 +536,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     if(m.preview!=null) wk.insertBefore(el("div",null,"Это превью режима, цифры ниже настоящие."), wk.firstChild);
     var p = m.preview!=null ? m.preview : m.p!=null ? m.p : 50, lead = Math.max(-1, Math.min(1, (p-50)/50));
     document.getElementById("knot").style.transform = "translate(" + (-130*lead) + "px,0)";
+    document.getElementById("knotLbl").textContent = m.p!=null ? fmtPct(m.p) : "";
     document.getElementById("angelLean").style.transform = "rotate(" + (-8*lead) + "deg) scale(" + (1+0.08*lead) + ")";
     document.getElementById("devilLean").style.transform = "rotate(" + (-8*lead) + "deg) scale(" + (1-0.08*lead) + ")";
     var hot = m.key==="doom" || m.key==="red", holy = m.key==="heaven" || m.key==="blue";
@@ -515,7 +544,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     document.getElementById("bgHell").style.opacity = hot ? 1 : .35;
     document.getElementById("fx-sparks").style.opacity = holy ? 1 : .3;
     document.getElementById("bgHeaven").style.opacity = holy ? 1 : .45;
-    document.getElementById("funToggle").textContent = "Выключить шутки";
+    document.getElementById("funToggle").textContent = "Скрыть";
     funSpeech();
   }
   function poke(who){
@@ -664,7 +693,30 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   function defaultSelection(){ var l = raceList(state.chamber).slice().sort(function(a,b){return closeness(a)-closeness(b);}); return l.length ? l[0].st : null; }
   document.querySelectorAll(".tab").forEach(function(t){ t.addEventListener("click", function(){ setChamber(t.getAttribute("data-ch")); }); });
 
-  function renderAll(){ paint(); renderLegend(); renderBars(); renderMeta(); renderCard(); renderRaces(); renderFun(); }
+  /* power: balance of power scenarios */
+  var SCEN = [
+    {id:"sweepD", name:"Обе палаты у синих", tag:"Стоп-кран", v:"--safeD", text:"Без демократов не пройдёт ни один закон и ни один бюджет. Расследования и повестки в обеих палатах. Судей и министров утверждает Сенат, и синее большинство может их не пропускать."},
+    {id:"houseD", name:"Только Палата у синих", tag:"Ручник", v:"--leanD", text:"Законы и бюджет без демократов не пройдут, Палата ведёт расследования и может объявить импичмент. Судей и министров Сенат утверждает как раньше."},
+    {id:"sweepR", name:"Всё у красных", tag:"Полный газ", v:"--safeR", text:"Как сейчас: Белый дом и обе палаты у республиканцев, законы проходят без демократов."}
+  ];
+  function renderPower(){
+    var b = (state.meta||{}).balance, sec = document.getElementById("power");
+    if(!b || !b.values){ sec.hidden = true; return; } sec.hidden = false;
+    var v = b.values, st = document.getElementById("stripPower"); st.textContent = "";
+    seg(st, v.sweepD, 100, cssVar("--safeD"), false, "Обе палаты у синих: " + fmtPct(v.sweepD));
+    seg(st, v.houseD, 100, cssVar("--leanD"), false, "Только Палата у синих: " + fmtPct(v.houseD));
+    seg(st, v.senateD, 100, cssVar("--toss"), false, "Только Сенат у синих: " + fmtPct(v.senateD||0));
+    seg(st, v.sweepR, 100, cssVar("--safeR"), false, "Всё у красных: " + fmtPct(v.sweepR));
+    var box = document.getElementById("scen"); box.textContent = "";
+    SCEN.forEach(function(s){
+      var c = el("div",{"class":"s"}); c.style.borderTopColor = cssVar(s.v);
+      var top = el("div",{"class":"hd"}); top.appendChild(el("span",{"class":"nm"}, s.name)); top.appendChild(el("span",{"class":"pc"}, v[s.id]!=null ? fmtPct(v[s.id]) : "…")); c.appendChild(top);
+      c.appendChild(el("div",{"class":"tag"}, s.tag)); c.appendChild(el("p",null,s.text)); box.appendChild(c);
+    });
+    document.getElementById("powerOdds").textContent = "Polymarket" + (state.liveAt ? ", сейчас" : "");
+  }
+
+  function renderAll(){ paint(); renderLegend(); renderBars(); renderMeta(); renderCard(); renderRaces(); renderPower(); renderFun(); }
   setChamber(state.chamber);
 
   /* theme changes: repaint colors read from tokens */
@@ -683,6 +735,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     var m = state.meta || {};
     if(typeof live.odds["control-senate"]==="number" && m.senate) m.senate.demProb = live.odds["control-senate"];
     if(typeof live.odds["control-house"]==="number" && m.house) m.house.demProb = live.odds["control-house"];
+    if(m.balance && m.balance.values) for(var id in m.balance.outcomes){ var bv = live.odds["balance-"+id]; if(typeof bv==="number") m.balance.values[id] = bv; }
     if(n) state.liveAt = live.updated;
   }
   fetch("data.json", {cache:"no-cache"}).then(function(r){ if(!r.ok) throw new Error("data"); return r.json(); }).then(function(data){
