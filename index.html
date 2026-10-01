@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Карта промежуточных выборов США 2026: Сенат и губернаторы по штатам, шансы на рынках и опросы.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='16' height='32' fill='%231d4aa0'/%3E%3Crect x='16' width='16' height='32' fill='%23a9232c'/%3E%3C/svg%3E">
+<title>Карта выборов 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: election-night desk. Header with countdown, chamber control bars, map + race card side by side, key races list, method and sources. */
+:root{
+  --bg:#eef0f4; --surface:#ffffff; --ink:#141a26; --muted:#5a6375; --line:#d6dbe4; --accent:#a8741a;
+  --safeD:#1d4aa0; --likelyD:#4a77c8; --leanD:#a3bde8;
+  --toss:#a796cc;
+  --leanR:#efaaa8; --likelyR:#d35c5f; --safeR:#a9232c;
+  --none:#dfe3ea; --stroke:#ffffff; --sel:#141a26;
+  --f-display:"Oswald","Arial Narrow","Roboto Condensed",sans-serif;
+  --f-body:"Golos Text","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e121a; --surface:#161c27; --ink:#e7eaf1; --muted:#97a0b2; --line:#2a3242; --accent:#e0a94a;
+    --safeD:#3a6cd0; --likelyD:#6a93e0; --leanD:#9ab6ea;
+    --toss:#a99ad4;
+    --leanR:#efa9a7; --likelyR:#df6b6e; --safeR:#c43a42;
+    --none:#252c3a; --stroke:#0e121a; --sel:#ffffff;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e121a; --surface:#161c27; --ink:#e7eaf1; --muted:#97a0b2; --line:#2a3242; --accent:#e0a94a;
+  --safeD:#3a6cd0; --likelyD:#6a93e0; --leanD:#9ab6ea;
+  --toss:#a99ad4;
+  --leanR:#efa9a7; --likelyR:#df6b6e; --safeR:#c43a42;
+  --none:#252c3a; --stroke:#0e121a; --sel:#ffffff;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:grid;gap:20px}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:.01em;text-wrap:balance;margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.top h1{font-size:clamp(30px,5vw,46px);line-height:1.05;text-transform:uppercase}
+.top .sub{color:var(--muted);margin-top:4px}
+.count{display:flex;align-items:baseline;gap:10px}
+.count .n{font-family:var(--f-display);font-size:clamp(40px,7vw,64px);line-height:1;color:var(--accent)}
+.count .t{font-size:13px;color:var(--muted);max-width:11em;line-height:1.3}
+
+/* control bars */
+.bars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.bars{grid-template-columns:1fr}}
+.bar{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.bar h2{font-size:18px;text-transform:uppercase;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.bar h2 .odds{font-family:var(--f-mono);font-size:13px;font-weight:500;text-transform:none;color:var(--muted)}
+.strip{position:relative;height:22px;display:flex;border-radius:3px;overflow:hidden;background:var(--none)}
+.strip span{display:block;height:100%}
+.strip .faded{opacity:.55}
+.mark{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+.legendline{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.legendline b{font-family:var(--f-mono);font-weight:500}
+.dtext{color:var(--safeD)} .rtext{color:var(--safeR)}
+.bar .foot{font-size:12.5px;color:var(--muted)}
+
+/* context chips */
+.ctx{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--muted)}
+.ctx div b{color:var(--ink);font-family:var(--f-mono);font-weight:500}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font:inherit;font-family:var(--f-display);font-size:16px;letter-spacing:.04em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:4px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab:focus-visible,.chip:focus-visible,.race:focus-visible,path.st:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* map + card */
+.stage{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.stage{grid-template-columns:1fr}}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;min-width:0;position:relative}
+svg.map{width:100%;height:auto;display:block}
+path.st{stroke:var(--stroke);stroke-width:.9;cursor:pointer;transition:opacity .15s}
+path.st:hover{opacity:.82}
+path.st.sel{stroke:var(--sel);stroke-width:2.4}
+text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-events:none;text-anchor:middle;dominant-baseline:central}
+.small{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font:inherit;font-family:var(--f-mono);font-size:12px;border:1px solid var(--line);border-radius:3px;padding:3px 8px;cursor:pointer;color:var(--ink);background:var(--none)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:12.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:14px;border-radius:2px;display:inline-block}
+.empty{position:absolute;inset:12px;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:14px;pointer-events:none}
+.empty[hidden]{display:none!important}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:12px;min-width:0}
+.card h3{font-size:26px;text-transform:uppercase;line-height:1.1}
+.card .meta{font-size:13px;color:var(--muted)}
+.rchip{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:3px;color:#fff}
+.rchip.light{color:#141a26}
+.cands{display:grid;gap:6px}
+.cand{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border-top:1px solid var(--line);padding-top:6px}
+.cand .p{font-size:12px;font-weight:600;letter-spacing:.06em}
+.prob{display:grid;gap:4px}
+.pbar{display:flex;height:10px;border-radius:2px;overflow:hidden;background:var(--none)}
+.pbar .d{background:var(--safeD)} .pbar .r{background:var(--safeR)}
+.plabels{display:flex;justify-content:space-between;font-size:12.5px}
+.card p{margin:0;max-width:65ch}
+.card .polls{font-size:14px}
+.card .note{font-size:13.5px;color:var(--muted)}
+
+/* key races */
+.races{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.race{font:inherit;text-align:left;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--none);border-radius:4px;padding:10px 12px;cursor:pointer;color:var(--ink);display:grid;gap:6px;min-width:0}
+.race .h{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.race .h b{font-family:var(--f-display);font-size:17px;font-weight:600;text-transform:uppercase}
+.race .h span{font-size:11.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.race .c{font-size:13px;color:var(--muted)}
+.sect h2{font-size:22px;text-transform:uppercase;margin-bottom:10px}
+
+/* method */
+.method{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;font-size:13.5px;color:var(--muted)}
+@media (max-width:900px){.method{grid-template-columns:1fr}}
+.method h3{font-size:15px;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.method ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.method a{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Промежуточные выборы США · 3 ноября 2026</div>
+      <h1>Карта выборов 2026</h1>
+      <div class="sub" id="updated">Данные загружаются…</div>
+    </div>
+    <div class="count"><span class="n mono" id="days">…</span><span class="t" id="daysT">дней до дня выборов</span></div>
+  </header>
+
+  <section class="bars" aria-label="Контроль палат">
+    <div class="bar" id="barSenate">
+      <h2>Сенат <span class="odds" id="oddsSenate">…</span></h2>
+      <div class="strip" id="stripSenate"></div>
+      <div class="legendline" id="lineSenate"><span>Нужно 51 место для демократов</span></div>
+      <div class="foot" id="footSenate">Сейчас 53–47 у республиканцев. При 50 на 50 решает вице-президент.</div>
+    </div>
+    <div class="bar" id="barHouse">
+      <h2>Палата представителей <span class="odds" id="oddsHouse">…</span></h2>
+      <div class="strip" id="stripHouse"></div>
+      <div class="legendline" id="lineHouse"><span>Для большинства нужно 218</span></div>
+      <div class="foot" id="footHouse">…</div>
+    </div>
+    <div class="bar" id="barGov">
+      <h2>Губернаторы <span class="odds" id="oddsGov">36 гонок</span></h2>
+      <div class="strip" id="stripGov"></div>
+      <div class="legendline" id="lineGov"><span>…</span></div>
+      <div class="foot" id="footGov">…</div>
+    </div>
+  </section>
+
+  <div class="ctx" id="ctx"></div>
+
+  <div class="tabs" role="tablist" aria-label="Что показать на карте">
+    <button class="tab" id="tab-senate" role="tab" aria-selected="true" data-ch="senate">Сенат</button>
+    <button class="tab" id="tab-governor" role="tab" aria-selected="false" data-ch="governor">Губернаторы</button>
+  </div>
+
+  <section class="stage">
+    <div class="mapbox">
+      <svg class="map" id="map" viewBox="-58 0 1020 612" role="img" aria-label="Карта штатов США, окрашенных по оценке гонки"></svg>
+      <div class="empty" id="empty">Загружаю карту и данные о гонках…</div>
+      <div class="small" id="small" aria-label="Небольшие штаты"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <aside class="card" id="card" aria-live="polite">
+      <div class="eyebrow">Гонка</div>
+      <h3>Выберите штат</h3>
+      <p class="note">Нажмите на штат на карте или на карточку гонки ниже.</p>
+    </aside>
+  </section>
+
+  <section class="sect">
+    <h2 id="keyTitle">Ключевые гонки</h2>
+    <div class="races" id="races"></div>
+  </section>
+
+  <section class="method">
+    <div>
+      <h3>Как читать цвет</h3>
+      <p id="methodText">Цвет штата это сводная оценка: вероятность по рынку Polymarket, где он есть, плюс опросы и рейтинги аналитиков. Если вероятность победы демократа (или союзного независимого) 82% и выше, штат «вероятно D»; 62–82% «склоняется к D»; 38–62% «спорный»; дальше симметрично для республиканцев. Переходящие места и гонки с рынком не красятся как «надёжные». Это не прогноз и не совет.</p>
+    </div>
+    <div>
+      <h3>Источники</h3>
+      <ul id="sources"><li>Появятся вместе с данными.</li></ul>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var RATINGS = {
+    safeD:{label:"Надёжно D", v:"--safeD", side:"D", strong:true},
+    likelyD:{label:"Вероятно D", v:"--likelyD", side:"D", strong:true},
+    leanD:{label:"Склоняется к D", v:"--leanD", side:"D", strong:false},
+    tossup:{label:"Спорный", v:"--toss", side:"T", strong:false},
+    leanR:{label:"Склоняется к R", v:"--leanR", side:"R", strong:false},
+    likelyR:{label:"Вероятно R", v:"--likelyR", side:"R", strong:true},
+    safeR:{label:"Надёжно R", v:"--safeR", side:"R", strong:true}
+  };
+  var ORDER = ["safeD","likelyD","leanD","tossup","leanR","likelyR","safeR"];
+  var ABBR = {"Alabama":"AL","Alaska":"AK","Arizona":"AZ","Arkansas":"AR","California":"CA","Colorado":"CO","Connecticut":"CT","Delaware":"DE","District of Columbia":"DC","Florida":"FL","Georgia":"GA","Hawaii":"HI","Idaho":"ID","Illinois":"IL","Indiana":"IN","Iowa":"IA","Kansas":"KS","Kentucky":"KY","Louisiana":"LA","Maine":"ME","Maryland":"MD","Massachusetts":"MA","Michigan":"MI","Minnesota":"MN","Mississippi":"MS","Missouri":"MO","Montana":"MT","Nebraska":"NE","Nevada":"NV","New Hampshire":"NH","New Jersey":"NJ","New Mexico":"NM","New York":"NY","North Carolina":"NC","North Dakota":"ND","Ohio":"OH","Oklahoma":"OK","Oregon":"OR","Pennsylvania":"PA","Rhode Island":"RI","South Carolina":"SC","South Dakota":"SD","Tennessee":"TN","Texas":"TX","Utah":"UT","Vermont":"VT","Virginia":"VA","Washington":"WA","West Virginia":"WV","Wisconsin":"WI","Wyoming":"WY"};
+  var RU = {AL:"Алабама",AK:"Аляска",AZ:"Аризона",AR:"Арканзас",CA:"Калифорния",CO:"Колорадо",CT:"Коннектикут",DE:"Делавэр",DC:"Округ Колумбия",FL:"Флорида",GA:"Джорджия",HI:"Гавайи",ID:"Айдахо",IL:"Иллинойс",IN:"Индиана",IA:"Айова",KS:"Канзас",KY:"Кентукки",LA:"Луизиана",ME:"Мэн",MD:"Мэриленд",MA:"Массачусетс",MI:"Мичиган",MN:"Миннесота",MS:"Миссисипи",MO:"Миссури",MT:"Монтана",NE:"Небраска",NV:"Невада",NH:"Нью-Гэмпшир",NJ:"Нью-Джерси",NM:"Нью-Мексико",NY:"Нью-Йорк",NC:"Северная Каролина",ND:"Северная Дакота",OH:"Огайо",OK:"Оклахома",OR:"Орегон",PA:"Пенсильвания",RI:"Род-Айленд",SC:"Южная Каролина",SD:"Южная Дакота",TN:"Теннесси",TX:"Техас",UT:"Юта",VT:"Вермонт",VA:"Вирджиния",WA:"Вашингтон",WV:"Западная Вирджиния",WI:"Висконсин",WY:"Вайоминг"};
+  var SMALL = ["VT","NH","MA","RI","CT","NJ","DE","MD"];
+
+  var state = {chamber:"senate", races:{}, meta:null, selected:null, paths:{}, labels:{}};
+  try{ var saved = localStorage.getItem("em26-tab"); if(saved==="governor"||saved==="senate") state.chamber = saved; }catch(e){}
+
+  function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function key(ch, st){ return ch + "-" + st; }
+  function el(tag, attrs, text){ var n=document.createElement(tag); if(attrs) for(var k in attrs){ if(k==="class") n.className=attrs[k]; else n.setAttribute(k, attrs[k]); } if(text!=null) n.textContent=text; return n; }
+  function fmtPct(x){ return (Math.round(x*10)/10).toString().replace(".", ",") + "%"; }
+  function raceList(ch){ var out=[]; for(var k in state.races){ var r=state.races[k]; if(r.chamber===ch) out.push(r); } return out; }
+
+  /* countdown */
+  function daysLeft(){
+    var target = new Date(2026,10,3); var now = new Date();
+    var t0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((target - t0)/86400000);
+  }
+  (function(){ var d = daysLeft(); var n=document.getElementById("days"); var t=document.getElementById("daysT");
+    if(d>0){ n.textContent=d; t.textContent = "дней до дня выборов"; } else if(d===0){ n.textContent="0"; t.textContent="сегодня день выборов"; } else { n.textContent="✓"; t.textContent="выборы прошли"; } })();
+
+  /* map */
+  var svg = d3.select("#map");
+  var gStates = svg.append("g");
+  var gLabels = svg.append("g");
+  var pathGen = d3.geoPath();
+
+  fetch("states-albers-10m.json").then(function(r){ if(!r.ok) throw new Error("map"); return r.json(); }).then(function(us){
+    var feats = topojson.feature(us, us.objects.states).features;
+    feats.forEach(function(f){
+      var ab = ABBR[f.properties.name]; if(!ab) return;
+      var p = gStates.append("path").attr("d", pathGen(f)).attr("class","st").attr("tabindex", ab==="DC"? -1 : 0)
+        .attr("role","button").attr("aria-label", RU[ab] || f.properties.name).datum(ab);
+      p.on("click", function(){ select(ab); }).on("keydown", function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); select(ab); } });
+      state.paths[ab] = p;
+      var area = pathGen.area(f);
+      if(SMALL.indexOf(ab)===-1 && ab!=="DC" && area>900){
+        var c = pathGen.centroid(f);
+        if(ab==="FL") c=[c[0]+14,c[1]]; if(ab==="LA") c=[c[0]-8,c[1]]; if(ab==="MI") c=[c[0]+10,c[1]+18]; if(ab==="KY") c=[c[0]+6,c[1]+2];
+        state.labels[ab] = gLabels.append("text").attr("class","lbl").attr("x",c[0]).attr("y",c[1]).text(ab);
+      }
+    });
+    var small = document.getElementById("small");
+    SMALL.forEach(function(ab){
+      var b = el("button",{"class":"chip",type:"button","data-st":ab,"aria-label":RU[ab]}, ab);
+      b.addEventListener("click", function(){ select(ab); });
+      small.appendChild(b);
+    });
+    paint();
+  }).catch(function(){ document.getElementById("empty").textContent = "Карта не загрузилась. Обновите страницу."; });
+
+  function raceFor(ab){ return state.races[key(state.chamber, ab)]; }
+  function fillFor(ab){ var r = raceFor(ab); return r && RATINGS[r.rating] ? cssVar(RATINGS[r.rating].v) : cssVar("--none"); }
+  function labelColor(ab){ var r = raceFor(ab); if(!r||!RATINGS[r.rating]) return cssVar("--muted"); return RATINGS[r.rating].strong ? "#ffffff" : "#141a26"; }
+
+  function paint(){
+    for(var ab in state.paths){
+      state.paths[ab].attr("fill", fillFor(ab)).classed("sel", state.selected===ab);
+      if(state.labels[ab]) state.labels[ab].attr("fill", labelColor(ab));
+    }
+    document.querySelectorAll("#small .chip").forEach(function(b){
+      var ab=b.getAttribute("data-st"); var r=raceFor(ab);
+      b.style.background = fillFor(ab);
+      b.style.color = (r && RATINGS[r.rating] && RATINGS[r.rating].strong) ? "#ffffff" : (r? "#141a26" : "");
+      b.style.outline = state.selected===ab ? "2px solid var(--sel)" : "";
+    });
+    var has = Object.keys(state.races).length>0;
+    var paths = Object.keys(state.paths).length>0;
+    var empty = document.getElementById("empty");
+    if(paths && has) empty.hidden = true;
+    else if(paths && !has && state.dataError) { empty.hidden=false; empty.textContent = "Данные о гонках не загрузились. Обновите страницу."; }
+  }
+
+  /* legend */
+  function renderLegend(){
+    var lg = document.getElementById("legend"); lg.textContent="";
+    var counts = {}; raceList(state.chamber).forEach(function(r){ counts[r.rating]=(counts[r.rating]||0)+1; });
+    ORDER.forEach(function(k){ var s=el("span"); var i=el("i"); i.style.background=cssVar(RATINGS[k].v); s.appendChild(i); s.appendChild(document.createTextNode(RATINGS[k].label + (counts[k]? " · "+counts[k] : ""))); lg.appendChild(s); });
+    var s=el("span"); var i=el("i"); i.style.background=cssVar("--none"); s.appendChild(i); s.appendChild(document.createTextNode("Нет выборов")); lg.appendChild(s);
+  }
+
+  /* seat bars */
+  function seg(parent, n, total, color, faded, title){ if(!n) return; var s=el("span"); s.style.width=(n/total*100)+"%"; s.style.background=color; if(faded) s.className="faded"; if(title) s.title=title; parent.appendChild(s); }
+  function renderBars(){
+    var m = state.meta || {};
+    var sen = m.senate || {};
+    var list = raceList("senate");
+    var cnt = {}; ORDER.forEach(function(k){cnt[k]=0;}); list.forEach(function(r){ if(cnt[r.rating]!=null) cnt[r.rating]++; });
+    var notD = sen.notUpD||0, notR = sen.notUpR||0;
+    var st = document.getElementById("stripSenate"); st.textContent="";
+    if(list.length){
+      seg(st, notD, 100, cssVar("--safeD"), true, "Демократы, не переизбираются: "+notD);
+      ORDER.forEach(function(k){ seg(st, cnt[k], 100, cssVar(RATINGS[k].v), false, RATINGS[k].label+": "+cnt[k]); });
+      seg(st, notR, 100, cssVar("--safeR"), true, "Республиканцы, не переизбираются: "+notR);
+      var mk = el("i",{"class":"mark"}); mk.style.left="calc(50% - 1px)"; st.appendChild(mk);
+      var d = notD + cnt.safeD + cnt.likelyD + cnt.leanD, t = cnt.tossup, r = notR + cnt.safeR + cnt.likelyR + cnt.leanR;
+      var ln = document.getElementById("lineSenate"); ln.textContent="";
+      ln.appendChild(el("span",{"class":"dtext"},"D "+d)); ln.appendChild(el("span",null,"спорных "+t)); ln.appendChild(el("span",{"class":"rtext"},"R "+r));
+    }
+    document.getElementById("oddsSenate").textContent = sen.demProb!=null ? "D "+fmtPct(sen.demProb)+" на рынке" : "…";
+    if(sen.foot) document.getElementById("footSenate").textContent = sen.foot;
+
+    var h = m.house || {};
+    var sh = document.getElementById("stripHouse"); sh.textContent="";
+    if(h.forecastD){ seg(sh, h.forecastD, 435, cssVar("--likelyD")); seg(sh, h.forecastR, 435, cssVar("--likelyR"));
+      var mk2 = el("i",{"class":"mark"}); mk2.style.left="calc("+(218/435*100)+"% - 1px)"; sh.appendChild(mk2);
+      var lh = document.getElementById("lineHouse"); lh.textContent="";
+      lh.appendChild(el("span",{"class":"dtext"},"D "+h.forecastD)); lh.appendChild(el("span",null,"прогноз")); lh.appendChild(el("span",{"class":"rtext"},"R "+h.forecastR)); }
+    document.getElementById("oddsHouse").textContent = h.demProb!=null ? "D "+fmtPct(h.demProb)+" на рынке" : "…";
+    if(h.foot) document.getElementById("footHouse").textContent = h.foot;
+
+    var gl = raceList("governor"); var gc={}; ORDER.forEach(function(k){gc[k]=0;}); gl.forEach(function(r){ if(gc[r.rating]!=null) gc[r.rating]++; });
+    var sg = document.getElementById("stripGov"); sg.textContent="";
+    if(gl.length){ ORDER.forEach(function(k){ seg(sg, gc[k], gl.length, cssVar(RATINGS[k].v), false, RATINGS[k].label+": "+gc[k]); });
+      var gd = gc.safeD+gc.likelyD+gc.leanD, gr = gc.safeR+gc.likelyR+gc.leanR;
+      var lg2 = document.getElementById("lineGov"); lg2.textContent="";
+      lg2.appendChild(el("span",{"class":"dtext"},"D "+gd)); lg2.appendChild(el("span",null,"спорных "+gc.tossup)); lg2.appendChild(el("span",{"class":"rtext"},"R "+gr)); }
+    var g = m.governors || {};
+    if(g.foot) document.getElementById("footGov").textContent = g.foot;
+  }
+
+  /* context + sources + updated */
+  function renderMeta(){
+    var m = state.meta; if(!m) return;
+    document.getElementById("updated").textContent = "Обновлено " + (m.updatedLabel || m.updated || "…");
+    var ctx = document.getElementById("ctx"); ctx.textContent="";
+    (m.context||[]).forEach(function(c){ var d=el("div"); d.appendChild(document.createTextNode(c.label+": ")); d.appendChild(el("b",null,c.value)); ctx.appendChild(d); });
+    var src = document.getElementById("sources"); src.textContent="";
+    (m.sources||[]).forEach(function(s){ var li=el("li"); var a=el("a",{href:s.url,target:"_blank",rel:"noopener"},s.label); li.appendChild(a); src.appendChild(li); });
+    if(!(m.sources||[]).length) src.appendChild(el("li",null,"Нет данных."));
+  }
+
+  /* card */
+  function renderCard(){
+    var card = document.getElementById("card"); card.textContent="";
+    var ab = state.selected;
+    var chName = state.chamber==="senate" ? "Сенат" : "Губернатор";
+    if(!ab){ card.appendChild(el("div",{"class":"eyebrow"},chName)); card.appendChild(el("h3",null,"Выберите штат")); card.appendChild(el("p",{"class":"note"},"Нажмите на штат на карте или на карточку гонки ниже.")); return; }
+    var r = raceFor(ab);
+    card.appendChild(el("div",{"class":"eyebrow"}, chName + (r && r.special ? " · внеочередные выборы" : "")));
+    card.appendChild(el("h3",null, (r && r.name) || RU[ab] || ab));
+    if(!r){ card.appendChild(el("p",{"class":"note"}, state.chamber==="senate" ? "В этом штате в 2026 году нет выборов в Сенат." : "В этом штате в 2026 году нет выборов губернатора.")); return; }
+    var rt = RATINGS[r.rating];
+    if(rt){ var chip = el("span",{"class":"rchip"+(rt.strong?"":" light")}, rt.label); chip.style.background = cssVar(rt.v); card.appendChild(chip); }
+    if(r.status) card.appendChild(el("div",{"class":"meta"}, r.status));
+    if(r.dem || r.rep || r.ind){
+      var cs = el("div",{"class":"cands"});
+      [["D",r.dem,"dtext"],["I",r.ind,""],["R",r.rep,"rtext"]].forEach(function(x){ if(!x[1]) return; var row=el("div",{"class":"cand"}); row.appendChild(el("span",null,x[1])); row.appendChild(el("span",{"class":"p "+x[2]}, x[0]==="D"?"ДЕМОКРАТ":x[0]==="R"?"РЕСПУБЛИКАНЕЦ":"НЕЗАВИСИМЫЙ")); cs.appendChild(row); });
+      card.appendChild(cs);
+    }
+    if(r.dProb!=null){
+      var pr = el("div",{"class":"prob"});
+      pr.appendChild(el("div",{"class":"eyebrow"}, "Вероятность на рынке" + (r.probSrc? " · "+r.probSrc : "")));
+      var pb = el("div",{"class":"pbar"}); var dd=el("span",{"class":"d"}); dd.style.width=r.dProb+"%"; var rr=el("span",{"class":"r"}); rr.style.width=(100-r.dProb)+"%"; pb.appendChild(dd); pb.appendChild(rr); pr.appendChild(pb);
+      var pl = el("div",{"class":"plabels mono"}); pl.appendChild(el("span",{"class":"dtext"}, (r.dLabel||"D")+" "+fmtPct(r.dProb))); pl.appendChild(el("span",{"class":"rtext"}, "R "+fmtPct(100-r.dProb))); pr.appendChild(pl);
+      card.appendChild(pr);
+    }
+    if(r.polls){ var p=el("p",{"class":"polls"}); p.appendChild(el("b",null,"Опросы: ")); p.appendChild(document.createTextNode(r.polls)); card.appendChild(p); }
+    if(r.note) card.appendChild(el("p",{"class":"note"}, r.note));
+  }
+
+  /* key races */
+  function closeness(r){ return r.dProb!=null ? Math.abs(r.dProb-50) : (r.rating==="tossup"?5:r.rating==="leanD"||r.rating==="leanR"?20:r.rating==="likelyD"||r.rating==="likelyR"?35:50); }
+  function renderRaces(){
+    var box = document.getElementById("races"); box.textContent="";
+    var list = raceList(state.chamber).filter(function(r){ return r.rating!=="safeD" && r.rating!=="safeR"; });
+    list.sort(function(a,b){ return closeness(a)-closeness(b); });
+    document.getElementById("keyTitle").textContent = state.chamber==="senate" ? "Ключевые гонки в Сенат" : "Ключевые гонки губернаторов";
+    if(!list.length){ box.appendChild(el("p",{"class":"note"},"Список появится вместе с данными.")); return; }
+    list.forEach(function(r){
+      var b = el("button",{"class":"race",type:"button"});
+      b.style.borderLeftColor = RATINGS[r.rating] ? cssVar(RATINGS[r.rating].v) : cssVar("--none");
+      var h = el("div",{"class":"h"}); h.appendChild(el("b",null,r.name||RU[r.st])); h.appendChild(el("span",null, RATINGS[r.rating]?RATINGS[r.rating].label:"")); b.appendChild(h);
+      var who = [r.dem, r.ind, r.rep].filter(Boolean).join(" · ");
+      if(who) b.appendChild(el("div",{"class":"c"}, who));
+      if(r.dProb!=null){ var pb=el("div",{"class":"pbar"}); var dd=el("span",{"class":"d"}); dd.style.width=r.dProb+"%"; var rr=el("span",{"class":"r"}); rr.style.width=(100-r.dProb)+"%"; pb.appendChild(dd); pb.appendChild(rr); b.appendChild(pb);
+        var pl=el("div",{"class":"plabels mono"}); pl.appendChild(el("span",{"class":"dtext"},(r.dLabel||"D")+" "+fmtPct(r.dProb))); pl.appendChild(el("span",{"class":"rtext"},"R "+fmtPct(100-r.dProb))); b.appendChild(pl); }
+      b.addEventListener("click", function(){ select(r.st); document.getElementById("card").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth", block:"nearest"}); });
+      box.appendChild(b);
+    });
+  }
+
+  function select(ab){ state.selected = ab; paint(); renderCard(); }
+  function setChamber(ch){
+    state.chamber = ch;
+    try{ localStorage.setItem("em26-tab", ch); }catch(e){}
+    document.querySelectorAll(".tab").forEach(function(t){ t.setAttribute("aria-selected", t.getAttribute("data-ch")===ch ? "true":"false"); });
+    if(state.selected && !raceFor(state.selected)) state.selected = defaultSelection();
+    renderAll();
+  }
+  function defaultSelection(){ var l = raceList(state.chamber).slice().sort(function(a,b){return closeness(a)-closeness(b);}); return l.length ? l[0].st : null; }
+  document.querySelectorAll(".tab").forEach(function(t){ t.addEventListener("click", function(){ setChamber(t.getAttribute("data-ch")); }); });
+
+  function renderAll(){ paint(); renderLegend(); renderBars(); renderMeta(); renderCard(); renderRaces(); }
+  setChamber(state.chamber);
+
+  /* theme changes: repaint colors read from tokens */
+  try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderAll); }catch(e){}
+  try{ new MutationObserver(renderAll).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]}); }catch(e){}
+
+  /* data: static file, refreshed by a weekly commit */
+  fetch("data.json", {cache:"no-cache"}).then(function(r){ if(!r.ok) throw new Error("data"); return r.json(); }).then(function(data){
+    var next = {};
+    (data.races||[]).forEach(function(v){ if(v && v.chamber && v.st) next[key(v.chamber, v.st)] = v; });
+    state.races = next;
+    state.meta = data.meta || null;
+    if(!state.selected || !raceFor(state.selected)) state.selected = defaultSelection();
+    renderAll();
+  }).catch(function(){ state.dataError = true; paint(); });
+})();
+</script>
+
+</body>
+</html>
