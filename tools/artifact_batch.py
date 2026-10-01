@@ -2,9 +2,11 @@
 """Split data.json into per-document files and ArtifactData batch specs.
 
 The same data feeds the private claude.ai artifact copy of the map.
-Usage: python3 tools/artifact_batch.py <out_dir>
+Usage: python3 tools/artifact_batch.py <out_dir> [if_version]
 Writes <out_dir>/docs/*.json and <out_dir>/batch1.json, batch2.json, ...
 (each batch at most 50 writes: races/<id> and meta/summary).
+Overwriting existing docs needs their current version as if_version
+(all docs move in lockstep, one version per full sync).
 """
 import json
 import os
@@ -12,6 +14,7 @@ import sys
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 out = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else "artifact-batch")
+version = int(sys.argv[2]) if len(sys.argv) > 2 else None
 docs = os.path.join(out, "docs")
 os.makedirs(docs, exist_ok=True)
 
@@ -27,6 +30,10 @@ for race in data["races"]:
     path = os.path.join(docs, doc_id + ".json")
     json.dump(race, open(path, "w", encoding="utf-8"), ensure_ascii=False)
     writes.append({"op": "set", "collection": "races", "doc_id": doc_id, "file_path": path})
+
+if version is not None:
+    for w in writes:
+        w["if_version"] = version
 
 for i in range(0, len(writes), 50):
     name = os.path.join(out, "batch%d.json" % (i // 50 + 1))
