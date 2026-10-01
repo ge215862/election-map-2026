@@ -596,13 +596,16 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       if(/Ипотека/.test(c.label)) arr.splice(2, 0, "Ипотека " + c.value + ". Спасибо, босс");
       if(/Рейтинг Трампа/.test(c.label)) arr.splice(4, 0, "Рейтинг " + c.value + ". Держись там");
     });
+    /* this week's news lines (meta.lines, refreshed weekly) come up first */
+    (((state.meta||{}).lines||{})[who] || []).slice().reverse().forEach(function(s){ arr.splice(1, 0, s); });
     if(k==="doom" && who==="d") arr.unshift("Ха-ха! Америка погибает!");
     if(k==="heaven" && who==="a") arr.unshift("Аллилуйя!");
     return arr;
   }
   state.lineIdx = {a:0, d:0}; state.last = {a:"", d:""}; state.recent = {a:[], d:[]};
   function replyTo(who){
-    var last = state.last[who==="a" ? "d" : "a"] || "", r = REPLY[who][last];
+    var last = state.last[who==="a" ? "d" : "a"] || "", news = ((((state.meta||{}).lines||{}).replies||{})[who]) || {};
+    var r = news[last] || REPLY[who][last];
     if(!r){
       if(who==="a" && / краснеет\. Это только начало$/.test(last)) r = "Один штат не Сенат";
       else if(who==="d" && / синеет, ура!$/.test(last)) r = "Это временно";
