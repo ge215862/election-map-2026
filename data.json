@@ -133,6 +133,10 @@
    {
     "label": "American Immigration Council: деньги на ICE в законе 2025 года",
     "url": "https://www.americanimmigrationcouncil.org/fact-sheet/big-beautiful-bill-immigration-border-security/"
+   },
+   {
+    "label": "Википедия: Сенат, Алабама 2026",
+    "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Alabama"
    }
   ],
   "markets": {
@@ -858,10 +862,12 @@
    "name": "Алабама",
    "holder": "R",
    "rating": "safeR",
-   "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет.",
+   "status": "Открытое место, было у республиканцев (Томми Тубервилл идёт в губернаторы)",
+   "note": "Cook: «надёжно R». Трамп выиграл Алабаму в 2024 году примерно на 30 пунктов. Последний раз демократ побеждал здесь в 2017 году: Даг Джонс против Роя Мура (не путать с нынешним кандидатом Барри Муром). Рынка на Polymarket нет.",
    "baseRating": "safeR",
-   "prevRating": "safeR"
+   "prevRating": "safeR",
+   "dem": "Эверетт Уэсс",
+   "rep": "Барри Мур"
   },
   {
    "chamber": "senate",
