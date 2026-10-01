@@ -115,8 +115,20 @@
    {
     "label": "WTKR: досрочное голосование в Вирджинии",
     "url": "https://www.wtkr.com/news/local-news/virginia-early-voting-surges-more-than-220-000-ballots-cast-ahead-of-november-election"
+   },
+   {
+    "label": "Википедия: Сенат, Южная Каролина 2026",
+    "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina"
+   },
+   {
+    "label": "Википедия: губернатор, Аляска 2026",
+    "url": "https://en.wikipedia.org/wiki/2026_Alaska_gubernatorial_election"
    }
-  ]
+  ],
+  "markets": {
+   "senate": "which-party-will-win-the-senate-in-2026",
+   "house": "which-party-will-win-the-house-in-2026"
+  }
  },
  "races": [
   {
@@ -124,9 +136,20 @@
    "st": "AK",
    "name": "Аляска",
    "holder": "R",
-   "rating": "tossup",
+   "rating": "leanD",
    "status": "Открытое место, было у республиканцев",
-   "note": "DDHQ относит гонку к спорным. Надёжных опросов мало."
+   "note": "Голосование с ранжированием. Кроме Уилсон, в бюллетене ещё два республиканца: Дэйв Бронсон и Трег Тейлор. Демократ Том Бегич снялся и поддержал Крайс-Томкинса.",
+   "market": {
+    "slug": "alaska-governor-election-winner",
+    "d": [
+     "Kreiss-Tomkins"
+    ]
+   },
+   "baseRating": "tossup",
+   "dem": "Джонатан Крайс-Томкинс",
+   "rep": "Бернадетт Уилсон",
+   "dProb": 79.0,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -135,7 +158,15 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "alabama-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Даг Джонс",
+   "rep": "Томми Тубервилл",
+   "dProb": 9.0,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -144,7 +175,15 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "arkansas-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Фредрик Лав",
+   "rep": "Сара Хакаби Сандерс",
+   "dProb": 2.8,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -156,7 +195,11 @@
    "dem": "Кэти Хоббс",
    "rep": "Энди Биггс",
    "dProb": 88.5,
-   "probSrc": "Polymarket, 30.09"
+   "probSrc": "Polymarket, 01.10",
+   "market": {
+    "slug": "arizona-governor-winner-2026"
+   },
+   "baseRating": "likelyD"
   },
   {
    "chamber": "governor",
@@ -165,7 +208,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократический штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "governor",
@@ -173,7 +217,15 @@
    "name": "Колорадо",
    "holder": "D",
    "rating": "likelyD",
-   "status": "Открытое место, было у демократов"
+   "status": "Открытое место, было у демократов",
+   "market": {
+    "slug": "colorado-governor-winner-2026"
+   },
+   "baseRating": "likelyD",
+   "dem": "Фил Вайзер",
+   "rep": "Виктор Маркс",
+   "dProb": 96.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -182,7 +234,15 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократический штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "connecticut-governor-winner-2026"
+   },
+   "baseRating": "safeD",
+   "dem": "Нед Ламонт",
+   "rep": "Райан Фацио",
+   "dProb": 96.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -194,9 +254,13 @@
    "dem": "Дэвид Джолли",
    "rep": "Байрон Доналдс",
    "dProb": 21.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Среднее RCP: Доналдс +6. Stetson: +12. Change Research (заказ демократической группы): Джолли +2.",
-   "note": "Твой штат. Рынок уверенно за Доналдса, RCP формально держит гонку спорной."
+   "note": "Рынок уверенно за Доналдса, RCP формально держит гонку спорной.",
+   "market": {
+    "slug": "florida-governor-winner-2026"
+   },
+   "baseRating": "leanR"
   },
   {
    "chamber": "governor",
@@ -208,9 +272,13 @@
    "dem": "Кейша Лэнс Боттомс",
    "rep": "Рик Джексон",
    "dProb": 51.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Джексон +2…+3: Rasmussen 48:45, InsiderAdvantage +2. YouGov почти ровно.",
-   "note": "Самая равная крупная гонка губернаторов."
+   "note": "Самая равная крупная гонка губернаторов.",
+   "market": {
+    "slug": "georgia-governor-winner-2026"
+   },
+   "baseRating": "tossup"
   },
   {
    "chamber": "governor",
@@ -219,18 +287,33 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократический штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "hawaii-governor-winner-2026"
+   },
+   "baseRating": "safeD",
+   "dem": "Джош Грин",
+   "rep": "Гэри Кордери",
+   "dProb": 97.4,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
    "st": "IA",
    "name": "Айова",
    "holder": "R",
-   "rating": "tossup",
+   "rating": "likelyD",
    "status": "Открытое место, было у республиканцев (Ким Рейнольдс не идёт)",
    "dem": "Роб Сэнд",
    "polls": "Emerson: Сэнд сохраняет перевес.",
-   "note": "Рынка с ценой нет, оценка по опросам и DDHQ."
+   "note": "Рынок заметно больше верит Сэнду.",
+   "market": {
+    "slug": "iowa-governor-winner-2026"
+   },
+   "baseRating": "tossup",
+   "rep": "Зак Лан",
+   "dProb": 84.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -239,7 +322,15 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "idaho-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Терри Пикенс",
+   "rep": "Брэд Литтл",
+   "dProb": 2.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -248,16 +339,32 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократический штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "illinois-governor-winner-2026"
+   },
+   "baseRating": "safeD",
+   "dem": "Джей Би Прицкер",
+   "rep": "Даррен Бейли",
+   "dProb": 96.4,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
    "st": "KS",
    "name": "Канзас",
    "holder": "D",
-   "rating": "tossup",
+   "rating": "leanR",
    "status": "Открытое место, было у демократов (Лора Келли уходит по лимиту сроков)",
-   "note": "DDHQ: одна из гонок, которые решат большинство губернаторов."
+   "note": "DDHQ: одна из гонок, которые решат большинство губернаторов.",
+   "market": {
+    "slug": "kansas-governor-winner-2026"
+   },
+   "baseRating": "tossup",
+   "dem": "Синди Холшер",
+   "rep": "Тай Мастерсон",
+   "dProb": 27.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -266,7 +373,15 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократический штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "massachusetts-governor-winner-2026"
+   },
+   "baseRating": "safeD",
+   "dem": "Мора Хили",
+   "rep": "Майкл Миног",
+   "dProb": 96.2,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -275,27 +390,49 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократический штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "maryland-governor-winner-2026"
+   },
+   "baseRating": "safeD",
+   "dem": "Уэс Мур",
+   "rep": "Дэн Кокс",
+   "dProb": 96.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
    "st": "ME",
    "name": "Мэн",
    "holder": "D",
-   "rating": "leanD",
+   "rating": "likelyD",
    "status": "Открытое место, было у демократов (Джанет Миллс уходит по лимиту сроков)",
-   "note": "Оценка по рейтингам аналитиков."
+   "note": "Рынок уверенно за Пингри.",
+   "market": {
+    "slug": "maine-governor-winner-2026"
+   },
+   "baseRating": "leanD",
+   "dem": "Ханна Пингри",
+   "rep": "Роберт Чарльз",
+   "dProb": 96.0,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
    "st": "MI",
    "name": "Мичиган",
    "holder": "D",
-   "rating": "leanD",
+   "rating": "likelyD",
    "status": "Открытое место, было у демократов (Гретчен Уитмер уходит по лимиту сроков)",
    "dem": "Джослин Бенсон",
    "rep": "Джон Джеймс",
-   "polls": "Бенсон в среднем +8 (Pollsmax 48,7:40,8). Detroit News/WDIV в начале сентября: +4."
+   "polls": "Бенсон в среднем +8 (Pollsmax 48,7:40,8). Detroit News/WDIV в начале сентября: +4.",
+   "market": {
+    "slug": "michigan-governor-winner-2026"
+   },
+   "baseRating": "leanD",
+   "dProb": 91.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -303,7 +440,15 @@
    "name": "Миннесота",
    "holder": "D",
    "rating": "likelyD",
-   "status": "Открытое место, было у демократов (Тим Уолц не идёт)"
+   "status": "Открытое место, было у демократов (Тим Уолц не идёт)",
+   "market": {
+    "slug": "minnesota-governor-winner-2026"
+   },
+   "baseRating": "likelyD",
+   "dem": "Эми Клобушар",
+   "rep": "Лиза Демут",
+   "dProb": 95.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -312,7 +457,15 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "nebraska-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Линн Уолз",
+   "rep": "Джим Пиллен",
+   "dProb": 9.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -320,7 +473,15 @@
    "name": "Нью-Гэмпшир",
    "holder": "R",
    "rating": "likelyR",
-   "status": "Действующая губернатор: Келли Эйотт (R)"
+   "status": "Действующая губернатор: Келли Эйотт (R)",
+   "market": {
+    "slug": "new-hampshire-governor-winner-2026"
+   },
+   "baseRating": "likelyR",
+   "dem": "Синди Уормингтон",
+   "rep": "Келли Эйотт",
+   "dProb": 3.8,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -328,7 +489,15 @@
    "name": "Нью-Мексико",
    "holder": "D",
    "rating": "likelyD",
-   "status": "Открытое место, было у демократов"
+   "status": "Открытое место, было у демократов",
+   "market": {
+    "slug": "new-mexico-governor-winner-2026"
+   },
+   "baseRating": "likelyD",
+   "dem": "Деб Холанд",
+   "rep": "Грегг Халл",
+   "dProb": 95.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -340,8 +509,12 @@
    "dem": "Аарон Форд",
    "rep": "Джо Ломбардо",
    "dProb": 48.5,
-   "probSrc": "Polymarket, 30.09",
-   "polls": "Почти ровно."
+   "probSrc": "Polymarket, 01.10",
+   "polls": "Почти ровно.",
+   "market": {
+    "slug": "nevada-governor-winner-2026"
+   },
+   "baseRating": "tossup"
   },
   {
    "chamber": "governor",
@@ -349,7 +522,15 @@
    "name": "Нью-Йорк",
    "holder": "D",
    "rating": "likelyD",
-   "status": "Действующая губернатор: Кэти Хокул (D)"
+   "status": "Действующая губернатор: Кэти Хокул (D)",
+   "market": {
+    "slug": "new-york-governor-winner-2026"
+   },
+   "baseRating": "likelyD",
+   "dem": "Кэти Хокул",
+   "rep": "Брюс Блейкман",
+   "dProb": 95.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -361,8 +542,12 @@
    "dem": "Эми Актон",
    "rep": "Вивек Рамасвами",
    "dProb": 60.5,
-   "probSrc": "Polymarket, 30.09",
-   "polls": "Актон +3…+9: Suffolk 50:41, Marist 50:44, BGSU +3. Среднее RCP: +4."
+   "probSrc": "Polymarket, 01.10",
+   "polls": "Актон +3…+9: Suffolk 50:41, Marist 50:44, BGSU +3. Среднее RCP: +4.",
+   "market": {
+    "slug": "ohio-governor-winner-2026"
+   },
+   "baseRating": "tossup"
   },
   {
    "chamber": "governor",
@@ -371,15 +556,31 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "oklahoma-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Синди Мансон",
+   "rep": "Майк Маззеи",
+   "dProb": 7.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
    "st": "OR",
    "name": "Орегон",
    "holder": "D",
-   "rating": "likelyD",
-   "status": "Действующая губернатор: Тина Котек (D)"
+   "rating": "leanD",
+   "status": "Действующая губернатор: Тина Котек (D)",
+   "market": {
+    "slug": "oregon-governor-winner-2026"
+   },
+   "baseRating": "likelyD",
+   "dem": "Тина Котек",
+   "rep": "Кристин Дрейзан",
+   "dProb": 80.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -387,7 +588,15 @@
    "name": "Пенсильвания",
    "holder": "D",
    "rating": "likelyD",
-   "status": "Действующий губернатор: Джош Шапиро (D)"
+   "status": "Действующий губернатор: Джош Шапиро (D)",
+   "market": {
+    "slug": "pennsylvania-governor-winner-2026"
+   },
+   "baseRating": "likelyD",
+   "dem": "Джош Шапиро",
+   "rep": "Стейси Гаррити",
+   "dProb": 96.9,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -396,7 +605,14 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократический штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "rhode-island-governor-winner-2026"
+   },
+   "baseRating": "safeD",
+   "dem": "Хелена Фулкс",
+   "dProb": 96.7,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -405,7 +621,15 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "south-carolina-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Джермейн Джонсон",
+   "rep": "Алан Уилсон",
+   "dProb": 4.8,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -414,7 +638,15 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "south-dakota-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Дэн Алерс",
+   "rep": "Ларри Роден",
+   "dProb": 2.7,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -423,16 +655,32 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "tennessee-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Джерри Грин",
+   "rep": "Марша Блэкберн",
+   "dProb": 3.6,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
    "st": "TX",
    "name": "Техас",
    "holder": "R",
-   "rating": "likelyR",
+   "rating": "leanR",
    "status": "Действующий губернатор: Грег Эбботт (R)",
-   "note": "RCP формально считает гонку спорной, аналитики дают «вероятно R»."
+   "note": "RCP формально считает гонку спорной, аналитики дают «вероятно R».",
+   "market": {
+    "slug": "texas-governor-winner-2026"
+   },
+   "baseRating": "likelyR",
+   "dem": "Джина Инохоса",
+   "rep": "Грег Эбботт",
+   "dProb": 20.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -440,7 +688,15 @@
    "name": "Вермонт",
    "holder": "R",
    "rating": "likelyR",
-   "status": "Действующий губернатор: Фил Скотт (R)"
+   "status": "Действующий губернатор: Фил Скотт (R)",
+   "market": {
+    "slug": "vermont-governor-winner-2026"
+   },
+   "baseRating": "likelyR",
+   "dem": "Аманда Джану",
+   "rep": "Фил Скотт",
+   "dProb": 17.1,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "governor",
@@ -452,8 +708,12 @@
    "dem": "Дэвид Кроули",
    "rep": "Том Тиффани",
    "dProb": 80.5,
-   "probSrc": "Polymarket, 30.09",
-   "note": "Cook считает гонку спорной, рынок заметно больше верит демократу."
+   "probSrc": "Polymarket, 01.10",
+   "note": "Cook считает гонку спорной, рынок заметно больше верит демократу.",
+   "market": {
+    "slug": "wisconsin-governor-winner-2026"
+   },
+   "baseRating": "leanD"
   },
   {
    "chamber": "governor",
@@ -462,7 +722,15 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканский штат",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "market": {
+    "slug": "wyoming-governor-winner-2026"
+   },
+   "baseRating": "safeR",
+   "dem": "Кеннет Каснер",
+   "rep": "Эрик Барлоу",
+   "dProb": 2.9,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "senate",
@@ -474,9 +742,16 @@
    "dem": "Мэри Пелтола",
    "rep": "Дэн Салливан",
    "dProb": 72.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Пелтола +5…+6: Alaska Survey Research 50:44, AARP 46:41.",
-   "note": "Голосование с ранжированием: в финальном раунде AARP даёт Пелтоле 53:47."
+   "note": "Голосование с ранжированием: в финальном раунде AARP даёт Пелтоле 53:47.",
+   "market": {
+    "slug": "alaska-senate-election-winner",
+    "d": [
+     "Mary Peltola"
+    ]
+   },
+   "baseRating": "leanD"
   },
   {
    "chamber": "senate",
@@ -485,7 +760,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -494,7 +770,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -503,7 +780,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -512,7 +790,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -524,10 +803,14 @@
    "status": "Внеочередные выборы. Место занимает назначенная Эшли Муди (R)",
    "dem": "Энджи Никсон",
    "rep": "Эшли Муди",
-   "dProb": 14,
-   "probSrc": "Polymarket, рынок по разрыву, около",
+   "dProb": 8.5,
+   "probSrc": "Polymarket, 01.10",
    "polls": "Среднее PollingSource: Муди +2,3. St. Pete Polls ничья, InsiderAdvantage Муди +7.",
-   "note": "Никсон на праймериз неожиданно обыграла фаворита Александра Виндмана. Штат того места, что освободил Марко Рубио."
+   "note": "Никсон на праймериз неожиданно обыграла фаворита Александра Виндмана. Штат того места, что освободил Марко Рубио.",
+   "market": {
+    "slug": "florida-senate-election-winner"
+   },
+   "baseRating": "likelyR"
   },
   {
    "chamber": "senate",
@@ -539,9 +822,13 @@
    "dem": "Джон Оссофф",
    "rep": "Майк Коллинз",
    "dProb": 95.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Cook 23.09 перевёл гонку в «вероятно D».",
-   "note": "Возможно расщепление голосов: губернатором Джорджия может выбрать республиканца."
+   "note": "Возможно расщепление голосов: губернатором Джорджия может выбрать республиканца.",
+   "market": {
+    "slug": "georgia-senate-election-winner"
+   },
+   "baseRating": "likelyD"
   },
   {
    "chamber": "senate",
@@ -553,9 +840,13 @@
    "dem": "Джош Турек",
    "rep": "Эшли Хинсон",
    "dProb": 41.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Вразнобой: Emerson Хинсон +5, Marist Турек +8, Cygnal ничья, InsiderAdvantage Турек +1.",
-   "note": "Трамп выиграл Айову в 2024 году с перевесом 13 пунктов."
+   "note": "Трамп выиграл Айову в 2024 году с перевесом 13 пунктов.",
+   "market": {
+    "slug": "iowa-senate-election-winner"
+   },
+   "baseRating": "tossup"
   },
   {
    "chamber": "senate",
@@ -564,7 +855,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -573,7 +865,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -582,7 +875,15 @@
    "holder": "R",
    "rating": "leanR",
    "status": "Действующий сенатор: Роджер Маршалл (R)",
-   "note": "Cook 23.09 сдвинул гонку из «вероятно R» в «склоняется к R». Рынка с ценой нет."
+   "note": "Cook 23.09 сдвинул гонку из «вероятно R» в «склоняется к R».",
+   "market": {
+    "slug": "kansas-senate-election-winner"
+   },
+   "baseRating": "leanR",
+   "dem": "Адам Гамильтон",
+   "rep": "Роджер Маршалл",
+   "dProb": 28.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "senate",
@@ -591,7 +892,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -600,7 +902,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -609,21 +912,26 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
    "st": "ME",
    "name": "Мэн",
    "holder": "R",
-   "rating": "leanD",
+   "rating": "tossup",
    "status": "Действующая сенатор: Сьюзан Коллинз (R)",
    "dem": "Трой Джексон",
    "rep": "Сьюзан Коллинз",
-   "dProb": 69.5,
-   "probSrc": "Polymarket, 25.09",
+   "dProb": 58.5,
+   "probSrc": "Polymarket, 01.10",
    "polls": "Лидер меняется: co/efficient 30.09 Коллинз +2, InsiderAdvantage ничья, Pine Tree State Poll Джексон +4.",
-   "note": "Одна из гонок, которые решат большинство. Рынок верит Джексону больше, чем опросы."
+   "note": "Одна из гонок, которые решат большинство. С конца сентября рынок заметно охладел к Джексону.",
+   "market": {
+    "slug": "maine-senate-election-winner"
+   },
+   "baseRating": "leanD"
   },
   {
    "chamber": "senate",
@@ -635,7 +943,13 @@
    "dem": "Абдул Эль-Сайед",
    "rep": "Майк Роджерс",
    "polls": "Эль-Сайед +2…+7: Marist +7, Big Data +5, Emerson +2. WDIV в начале сентября: Роджерс +1.",
-   "note": "Cook: спорная гонка. Отдельного рынка с ценой у меня нет, оценка по опросам."
+   "note": "Cook считает гонку спорной, рынок заметно больше верит Эль-Сайеду.",
+   "market": {
+    "slug": "michigan-senate-election-winner"
+   },
+   "baseRating": "leanD",
+   "dProb": 72.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "senate",
@@ -644,7 +958,15 @@
    "holder": "D",
    "rating": "likelyD",
    "status": "Открытое место, было у демократов (Тина Смит уходит)",
-   "note": "Оценка по рейтингам аналитиков, рынка с ценой нет."
+   "note": "Рынок уверенно за Флэнаган.",
+   "market": {
+    "slug": "minnesota-senate-election-winner"
+   },
+   "baseRating": "likelyD",
+   "dem": "Пегги Флэнаган",
+   "rep": "Мишель Тафойя",
+   "dProb": 90.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "senate",
@@ -653,7 +975,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -662,7 +985,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -674,9 +998,13 @@
    "dem": "Рой Купер",
    "rep": "Майкл Уотли",
    "dProb": 95.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Купер впереди: Carolina Journal +15, Common Cause +10, Rasmussen +7, InsiderAdvantage +6.",
-   "note": "Самый вероятный переход места к демократам."
+   "note": "Самый вероятный переход места к демократам.",
+   "market": {
+    "slug": "north-carolina-senate-election-winner"
+   },
+   "baseRating": "likelyD"
   },
   {
    "chamber": "senate",
@@ -687,11 +1015,18 @@
    "status": "Действующий сенатор: Пит Рикеттс (R)",
    "ind": "Дэн Осборн",
    "rep": "Пит Рикеттс",
-   "dProb": 29.5,
+   "dProb": 30.5,
    "dLabel": "Осборн",
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Вразнобой: Wedgewood Рикеттс +4, SurveyUSA Осборн +4, GBAO (внутренний опрос) Осборн +1.",
-   "note": "Главный соперник республиканца независимый кандидат. Трамп собирается приехать в штат."
+   "note": "Главный соперник республиканца независимый кандидат. Трамп собирается приехать в штат.",
+   "market": {
+    "slug": "nebraska-senate-election-winner",
+    "d": [
+     "Independent"
+    ]
+   },
+   "baseRating": "leanR"
   },
   {
    "chamber": "senate",
@@ -702,10 +1037,14 @@
    "status": "Открытое место, было у демократов (Джин Шахин уходит)",
    "dem": "Крис Паппас",
    "rep": "Джон Э. Сунуну",
-   "dProb": 86,
-   "probSrc": "Polymarket, 30.09",
+   "dProb": 86.0,
+   "probSrc": "Polymarket, 01.10",
    "polls": "Паппас +5…+11: UNH +8, NYT/Siena +5, InsiderAdvantage +8, Rasmussen +11.",
-   "note": "Cook пока считает гонку спорной, опросы стабильно за Паппаса."
+   "note": "Cook пока считает гонку спорной, опросы стабильно за Паппаса.",
+   "market": {
+    "slug": "new-hampshire-senate-election-winner"
+   },
+   "baseRating": "likelyD"
   },
   {
    "chamber": "senate",
@@ -714,7 +1053,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -723,7 +1063,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -736,9 +1077,13 @@
    "dem": "Шеррод Браун",
    "rep": "Джон Хастед",
    "dProb": 59.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Браун +3…+8: Marist +8, Suffolk +3, Quantus +1.",
-   "note": "Штат, где Трамп выиграл с запасом, но Браун держит перевес."
+   "note": "Штат, где Трамп выиграл с запасом, но Браун держит перевес.",
+   "market": {
+    "slug": "ohio-senate-election-winner"
+   },
+   "baseRating": "tossup"
   },
   {
    "chamber": "senate",
@@ -747,7 +1092,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -756,7 +1102,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -765,7 +1112,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -773,8 +1121,16 @@
    "name": "Южная Каролина",
    "holder": "R",
    "rating": "likelyR",
-   "status": "Действующий сенатор: Линдси Грэм (R)",
-   "note": "Cook 23.09 сдвинул гонку из «надёжно R» в «вероятно R»."
+   "status": "Действующая сенатор: Дарлин Грэм (R). Назначена 13.07.2026 после смерти брата, Линдси Грэма (11.07.2026)",
+   "note": "Дарлин Грэм выиграла внутрипартийный второй тур 25.08 у конгрессмена Ральфа Нормана. Cook 23.09 сдвинул гонку из «надёжно R» в «вероятно R».",
+   "market": {
+    "slug": "south-carolina-senate-election-winner"
+   },
+   "baseRating": "likelyR",
+   "dem": "Энни Эндрюс",
+   "rep": "Дарлин Грэм",
+   "dProb": 13.5,
+   "probSrc": "Polymarket, 01.10"
   },
   {
    "chamber": "senate",
@@ -783,7 +1139,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -792,7 +1149,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -804,9 +1162,13 @@
    "dem": "Джеймс Таларико",
    "rep": "Кен Пакстон",
    "dProb": 62.5,
-   "probSrc": "Polymarket, 30.09",
+   "probSrc": "Polymarket, 01.10",
    "polls": "Таларико +1…+6, среднее DDHQ 47,4:43,5. Big Data Poll 28.09: +3.",
-   "note": "Cook и Sabato считают гонку спорной, рынок немного больше верит демократу."
+   "note": "Cook и Sabato считают гонку спорной, рынок немного больше верит демократу.",
+   "market": {
+    "slug": "texas-senate-election-winner"
+   },
+   "baseRating": "leanD"
   },
   {
    "chamber": "senate",
@@ -815,7 +1177,8 @@
    "holder": "D",
    "rating": "safeD",
    "status": "Демократическое место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeD"
   },
   {
    "chamber": "senate",
@@ -824,7 +1187,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   },
   {
    "chamber": "senate",
@@ -833,7 +1197,8 @@
    "holder": "R",
    "rating": "safeR",
    "status": "Республиканское место",
-   "note": "Надёжное место, серьёзной борьбы нет."
+   "note": "Надёжное место, серьёзной борьбы нет.",
+   "baseRating": "safeR"
   }
  ]
 }

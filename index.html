@@ -112,6 +112,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
 .card p{margin:0;max-width:65ch}
 .card .polls{font-size:14px}
 .card .note{font-size:13.5px;color:var(--muted)}
+.card .mlink{font-size:13px;color:var(--muted);justify-self:start}
 
 /* key races */
 .races{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
@@ -192,7 +193,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   <section class="method">
     <div>
       <h3>Как читать цвет</h3>
-      <p id="methodText">Цвет штата это сводная оценка: вероятность по рынку Polymarket, где он есть, плюс опросы и рейтинги аналитиков. Если вероятность победы демократа (или союзного независимого) 82% и выше, штат «вероятно D»; 62–82% «склоняется к D»; 38–62% «спорный»; дальше симметрично для республиканцев. Переходящие места и гонки с рынком не красятся как «надёжные». Это не прогноз и не совет.</p>
+      <p id="methodText">Цвет штата это сводная оценка. Где есть рынок Polymarket, цвет идёт за шансами победы демократа (или союзного независимого): 82% и выше «вероятно D», 62–82% «склоняется к D», 38–62% «спорный», дальше симметрично для республиканцев. «Надёжно» ставлю только там, где так считают аналитики и рынок даёт 90% и больше. Где рынка нет, цвет по рейтингам Cook и DDHQ. Шансы на сайте обновляются сами примерно раз в 10 минут, опросы и комментарии раз в неделю. Это не прогноз и не совет.</p>
     </div>
     <div>
       <h3>Источники</h3>
@@ -268,6 +269,11 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     paint();
   }).catch(function(){ document.getElementById("empty").textContent = "Карта не загрузилась. Обновите страницу."; });
 
+  function band(p, base){
+    if(base==="safeD" && p>=90) return "safeD";
+    if(base==="safeR" && p<=10) return "safeR";
+    if(p>=82) return "likelyD"; if(p>=62) return "leanD"; if(p>38) return "tossup"; if(p>18) return "leanR"; return "likelyR";
+  }
   function raceFor(ab){ return state.races[key(state.chamber, ab)]; }
   function fillFor(ab){ var r = raceFor(ab); return r && RATINGS[r.rating] ? cssVar(RATINGS[r.rating].v) : cssVar("--none"); }
   function labelColor(ab){ var r = raceFor(ab); if(!r||!RATINGS[r.rating]) return cssVar("--muted"); return RATINGS[r.rating].strong ? "#ffffff" : "#141a26"; }
@@ -341,7 +347,9 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   /* context + sources + updated */
   function renderMeta(){
     var m = state.meta; if(!m) return;
-    document.getElementById("updated").textContent = "Обновлено " + (m.updatedLabel || m.updated || "…");
+    var line = "Опросы и комментарии: " + (m.updatedLabel || m.updated || "…");
+    if(state.liveAt){ var t = new Date(state.liveAt); line += " · шансы рынка онлайн, " + t.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"}); }
+    document.getElementById("updated").textContent = line;
     var ctx = document.getElementById("ctx"); ctx.textContent="";
     (m.context||[]).forEach(function(c){ var d=el("div"); d.appendChild(document.createTextNode(c.label+": ")); d.appendChild(el("b",null,c.value)); ctx.appendChild(d); });
     var src = document.getElementById("sources"); src.textContent="";
@@ -374,6 +382,7 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
       var pl = el("div",{"class":"plabels mono"}); pl.appendChild(el("span",{"class":"dtext"}, (r.dLabel||"D")+" "+fmtPct(r.dProb))); pl.appendChild(el("span",{"class":"rtext"}, "R "+fmtPct(100-r.dProb))); pr.appendChild(pl);
       card.appendChild(pr);
     }
+    if(r.market && r.market.slug){ var ml=el("a",{"class":"mlink",href:"https://polymarket.com/event/"+r.market.slug,target:"_blank",rel:"noopener"},"Рынок на Polymarket ↗"); card.appendChild(ml); }
     if(r.polls){ var p=el("p",{"class":"polls"}); p.appendChild(el("b",null,"Опросы: ")); p.appendChild(document.createTextNode(r.polls)); card.appendChild(p); }
     if(r.note) card.appendChild(el("p",{"class":"note"}, r.note));
   }
@@ -417,7 +426,20 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
   try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderAll); }catch(e){}
   try{ new MutationObserver(renderAll).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]}); }catch(e){}
 
-  /* data: static file, refreshed by a weekly commit */
+  /* data: static snapshot (data.json), then live market odds where the host serves /api/odds */
+  function applyLive(live){
+    if(!live || !live.odds) return;
+    var n = 0;
+    for(var k in state.races){
+      var r = state.races[k], p = live.odds[k];
+      if(typeof p!=="number" || !r.market) continue;
+      r.dProb = p; r.probSrc = "Polymarket, сейчас"; r.rating = band(p, r.baseRating || r.rating); n++;
+    }
+    var m = state.meta || {};
+    if(typeof live.odds["control-senate"]==="number" && m.senate) m.senate.demProb = live.odds["control-senate"];
+    if(typeof live.odds["control-house"]==="number" && m.house) m.house.demProb = live.odds["control-house"];
+    if(n) state.liveAt = live.updated;
+  }
   fetch("data.json", {cache:"no-cache"}).then(function(r){ if(!r.ok) throw new Error("data"); return r.json(); }).then(function(data){
     var next = {};
     (data.races||[]).forEach(function(v){ if(v && v.chamber && v.st) next[key(v.chamber, v.st)] = v; });
@@ -425,6 +447,11 @@ text.lbl{font-family:var(--f-mono);font-size:10.5px;font-weight:500;pointer-even
     state.meta = data.meta || null;
     if(!state.selected || !raceFor(state.selected)) state.selected = defaultSelection();
     renderAll();
+    return fetch("/api/odds").then(function(r){ return r.ok ? r.json() : null; }).then(function(live){
+      if(!live) return; applyLive(live);
+      if(!state.selected || !raceFor(state.selected)) state.selected = defaultSelection();
+      renderAll();
+    }).catch(function(){});
   }).catch(function(){ state.dataError = true; paint(); });
 })();
 </script>
