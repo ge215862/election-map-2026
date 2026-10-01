@@ -1,0 +1,8 @@
+{
+  "name": "election-map-2026",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^10.0.0"
+  }
+}
